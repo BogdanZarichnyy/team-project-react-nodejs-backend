@@ -1,22 +1,30 @@
 const { isValidObjectId } = require('mongoose');
 const Pet = require('../../models/pet');
 const { createError } = require('../../helpers/createError');
+const {
+  DELETE_PET_SUCCESS,
+  NOT_FOUND_PET,
+  NOT_VALID_ID,
+} = require('./messages');
 
 async function deletePetByID(req, res) {
-    const { _id } = req.user;
-    const { petId: id } = req.params;
+  const { _id } = req.user;
+  const { petId: id } = req.params;
 
-    if (!isValidObjectId(id)) {
-        throw createError({ status: 422, message: "Pet ID is not valid for MongoDB documents, please enter correct 'pettId' -> [ .../api/pets/{:petId} ]" });
-    }
+  if (!isValidObjectId(id)) {
+    throw createError({
+      status: 422,
+      message: NOT_VALID_ID,
+    });
+  }
 
-    const data = await Pet.findOneAndRemove({ _id: id, owner: _id });
+  const data = await Pet.findOneAndRemove({ _id: id, owner: _id });
 
-    if (!data) {
-        throw createError({status: 404, message: 'Not Found'});
-    }
+  if (!data) {
+    throw createError({ status: 404, message: NOT_FOUND_PET });
+  }
 
-    res.status(200).json({ message: "Pet deleted" });
+  res.status(200).json({ data, message: DELETE_PET_SUCCESS });
 }
 
 module.exports = deletePetByID;

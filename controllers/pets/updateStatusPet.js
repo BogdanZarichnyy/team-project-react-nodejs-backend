@@ -1,26 +1,45 @@
 const { isValidObjectId } = require('mongoose');
-const Pet = require('../../models/pet');
+
 const { createError } = require('../../helpers/createError');
+const { PetModel } = require('../../models');
+
+const {
+  NOT_VALID_ID,
+  MISSING_FIELD,
+  NOT_FOUND_PET_FOR_UPDATE,
+  FOUNDED_DATA,
+} = require('./messages');
 
 const updateStatusPet = async (req, res) => {
-    const { _id } = req.user;
-    const { contactId: id } = req.params;
+  const { _id } = req.user;
+  const { contactId: id } = req.params;
 
-    if (!isValidObjectId(id)) {
-        throw createError({ status: 422, message: "Pet ID is not valid for MongoDB documents, please enter correct 'petId' -> [ .../api/pets/{:petsId} ]" });
-    }
+  if (!isValidObjectId(id)) {
+    throw createError({
+      status: 422,
+      message: NOT_VALID_ID,
+    });
+  }
 
-    if (req.body.favorite === undefined) {
-        throw createError({ status: 400, message: 'Missing field: { "favorite" }' });
-    }
+  if (req.body.favorite === undefined) {
+    throw createError({
+      status: 400,
+      message: MISSING_FIELD('favourite'),
+    });
+  }
 
-    const data = await Pet.findOneAndUpdate({ _id: id, owner: _id }, req.body, { new: true });
+  const data = PetModel.findOneAndUpdate({ _id: id, owner: _id }, req.body, {
+    new: true,
+  });
 
-    if (!data) {
-        throw createError({ status: 404, message: 'Not Found' });
-    }
+  if (!data) {
+    throw createError({ status: 404, message: NOT_FOUND_PET_FOR_UPDATE });
+  }
 
-    res.status(200).json(data);
-}
+  res.status(200).json({
+    data,
+    message: FOUNDED_DATA,
+  });
+};
 
-module.exports = updateStatusPet ;
+module.exports = updateStatusPet;
