@@ -1,7 +1,9 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { createError} = require('../../helpers/createError');
-const User = require('../../models/user');
+const User = require('../../models/userModel');
+
+const { JWT_ACCESS_SECRET_KEY, JWT_REFRESH_SECRET_KEY } = process.env;
 
 const loginUser = async (req, res) => {
     const { email, password } = req.body;
@@ -22,16 +24,15 @@ const loginUser = async (req, res) => {
         id: user._id
     };
 
-    const token = jwt.sign(userId, process.env.JWT_SECRET_KEY);
+    const accessToken = jwt.sign(userId, JWT_ACCESS_SECRET_KEY, { expiresIn: '1d' });
 
-    await User.findByIdAndUpdate(user._id, { token });
+    const refreshToken = jwt.sign(userId, JWT_REFRESH_SECRET_KEY, { expiresIn: '15m' });
+
+    const data = await User.findByIdAndUpdate(user._id, { accessToken, refreshToken }, { new: true })
+        .select({ password: 0, createdAt: 0, updatedAt: 0, accessToken: 0 });
 
     res.status(200).json({
-        token,
-        user: {
-            email: user.email,
-            subscription: user.subscription
-        }
+        user: data
     });
 }
 
