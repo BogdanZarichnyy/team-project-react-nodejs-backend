@@ -34,15 +34,12 @@ const userSchema = new Schema({
         required: [true, 'Enter the city in which you live'],
     },
     // favoritesAds: [Schema.Types.ObjectId],
-    // favoritesAds: {
-    //     type: Array,
-        // ref: 'pet',
-    // },
-    favoritesAds: [{
-        type: Schema.Types.ObjectId,
-        // require: true,
-        ref: "pet"
-    }],
+    favoritesAds: [Schema.Types.String],
+    // favoritesAds: [{
+    //     type: Schema.Types.ObjectId,
+    //     unique: true,
+    //     ref: "pet"
+    // }],
     accessToken: String,
     refreshToken: String,
 },
