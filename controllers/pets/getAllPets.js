@@ -1,14 +1,14 @@
 const { PetModel } = require('../../models');
 
 const getAllPets = async (req, res) => {
-  const { _id } = req.user;
+  // const { _id } = req.user;
   const { favorite, page = 1, limit = 8 } = req.query;
   const skip = (parseInt(page) - 1) * parseInt(limit);
 
-  const params = {
-    owner: _id,
-  };
-
+  const params = {};
+  if (req?.user) {
+    params.owner = req.user._id;
+  }
   if (favorite !== undefined) {
     params.favorite = favorite;
   }

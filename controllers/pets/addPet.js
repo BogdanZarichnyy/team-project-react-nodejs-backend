@@ -1,23 +1,25 @@
-const Pet = require('../../models/pet');
+const { PetModel } = require('../../models');
+
 const { createError } = require('../../helpers/createError');
+
+const { petsMessages } = require('../../helpers');
+
+const { CREATE_PET_SUCCESS } = petsMessages;
 
 const addPet = async (req, res) => {
   //   const { _id } = req.user;
-  const { name } = req.body;
+  const body = req.body;
 
-  const [pet] = await Pet.find({ name });
+  const newPet = await PetModel.create({ ...body, owner: null });
 
-  if (!pet) {
-    const data = await Pet.create({ ...req.body, owner: null });
-    res.status(201).json(data);
-  } else if (name === pet.name) {
+  if (!newPet) {
     throw createError({
-      status: 400,
-      message: `Pet with such name [ ${name} ] already exists`,
+      status: 500,
+      message: `Pet creation error`,
     });
-  } else {
-    throw createError();
   }
+
+  res.status(201).json({ data: newPet, message: CREATE_PET_SUCCESS });
 };
 
 module.exports = addPet;

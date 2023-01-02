@@ -2,13 +2,10 @@ const { isValidObjectId } = require('mongoose');
 
 const { createError } = require('../../helpers/createError');
 const { PetModel } = require('../../models');
+const { petsMessages } = require('../../helpers');
 
-const {
-  NOT_VALID_ID,
-  MISSING_FIELD,
-  NOT_FOUND_PET_FOR_UPDATE,
-  FOUNDED_DATA,
-} = require('./messages');
+const { NOT_VALID_ID, MISSING_FIELD, NOT_FOUND_PET_FOR_UPDATE, FOUNDED_DATA } =
+  petsMessages;
 
 const updateStatusPet = async (req, res) => {
   const { _id } = req.user;

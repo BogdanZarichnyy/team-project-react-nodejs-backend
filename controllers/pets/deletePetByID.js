@@ -1,11 +1,8 @@
 const { isValidObjectId } = require('mongoose');
 const Pet = require('../../models/pet');
 const { createError } = require('../../helpers/createError');
-const {
-  DELETE_PET_SUCCESS,
-  NOT_FOUND_PET,
-  NOT_VALID_ID,
-} = require('./messages');
+const { petsMessages } = require('../../helpers');
+const { DELETE_PET_SUCCESS, NOT_FOUND_PET, NOT_VALID_ID } = petsMessages;
 
 async function deletePetByID(req, res) {
   const { _id } = req.user;

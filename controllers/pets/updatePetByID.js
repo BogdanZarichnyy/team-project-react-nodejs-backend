@@ -1,12 +1,12 @@
 const { isValidObjectId } = require('mongoose');
 const { createError } = require('../../helpers/createError');
-const { NOT_VALID_ID, NOT_FOUND_PET_FOR_UPDATE } = require('./messages');
+const { petsMessages } = require('../../helpers');
+const { NOT_VALID_ID, NOT_FOUND_PET_FOR_UPDATE } = petsMessages;
 const { PetModel } = require('../../models');
 
 const updatePetByID = async (req, res) => {
   //   const { _id } = req.user;
   const { petId: id } = req.params;
-  const { name, email, phone } = req.body;
 
   if (!isValidObjectId(id)) {
     throw createError({ status: 422, message: NOT_VALID_ID });

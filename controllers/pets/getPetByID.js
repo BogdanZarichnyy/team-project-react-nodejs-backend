@@ -3,7 +3,9 @@ const { isValidObjectId } = require('mongoose');
 const { PetModel } = require('../../models');
 
 const { createError } = require('../../helpers/createError');
-const { NOT_VALID_ID, NOT_FOUND_PET } = require('./messages');
+
+const { petsMessages } = require('../../helpers');
+const { NOT_VALID_ID, NOT_FOUND_PET } = petsMessages;
 
 const getPetByID = async (req, res) => {
   const { contactId: id } = req.params;
