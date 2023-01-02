@@ -2,7 +2,7 @@ const { PetModel } = require('../../models');
 
 const getAllPets = async (req, res) => {
   // const { _id } = req.user;
-  const { favorite, page = 1, limit = 8 } = req.query;
+  const { category, favorite, page = 1, limit = 8 } = req.query;
   const skip = (parseInt(page) - 1) * parseInt(limit);
 
   const params = {};
@@ -11,6 +11,9 @@ const getAllPets = async (req, res) => {
   }
   if (favorite !== undefined) {
     params.favorite = favorite;
+  }
+  if (category) {
+    params.category = category;
   }
 
   const data = await PetModel.find(params)
