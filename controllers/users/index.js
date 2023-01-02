@@ -6,14 +6,16 @@ const deleteFavoritesAdsUser = require('./deleteFavoritesAdsUser');
 const editUserProfile = require('./editUserProfile');
 const forgotUserPassword = require('./forgotUserPassword');
 const logoutUser = require('./logoutUser');
+const verify = require('./verify');
 
 module.exports = {
-    registrationUser,
-    loginUser,
-    getCurrentUser,
-    addFavoritesAdsUser,
-    deleteFavoritesAdsUser,
-    editUserProfile,
-    forgotUserPassword,
-    logoutUser
-}
+  registrationUser,
+  loginUser,
+  getCurrentUser,
+  addFavoritesAdsUser,
+  deleteFavoritesAdsUser,
+  editUserProfile,
+  forgotUserPassword,
+  logoutUser,
+  verify,
+};
