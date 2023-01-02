@@ -7,16 +7,24 @@ module.exports = {
                 .pattern(/^[a-zA-Z- ]+$/)
                 .min(3)
                 .max(40)
+                .optional(),
+            sex: Joi.string()
                 .required(),
-            email: Joi.string()
-                .email()
+            price: Joi.number()
+                .min(1)
                 .required(),
-            phone: Joi.string()
-                .pattern(/^[0-9-() +]+$/)
-                .min(10)
-                .max(30)
+            category: Joi.string()
                 .required(),
-            favorite: Joi.boolean(),
+            breed: Joi.string()
+                .optional(),
+            birthDate: Joi.string()
+                .optional(),
+            addTitle: Joi.string()
+                .required(),
+            location: Joi.string()
+                .required(),
+            comments: Joi.string()
+                .optional(),
         });
         const validationResult = schema.validate(req.body);
         if (validationResult.error) {
@@ -32,15 +40,22 @@ module.exports = {
                 .min(3)
                 .max(40)
                 .optional(),
-            email: Joi.string()
-                .email()
+            price: Joi.number()
+                .min(1)
                 .optional(),
-            phone: Joi.string()
-                .pattern(/^[0-9-() +]+$/)
-                .min(10)
-                .max(30)
+            category: Joi.string()
                 .optional(),
-            favorite: Joi.boolean()
+            breed: Joi.string()
+                .optional(),
+            birthDate: Joi.string()
+                .optional(),
+            addTitle: Joi.string()
+                .optional(),
+            sex: Joi.string()
+                .optional(),
+            comments: Joi.string()
+                .optional(),
+            location: Joi.string()
                 .optional(),
         });
         const validationResult = schema.validate(req.body);
