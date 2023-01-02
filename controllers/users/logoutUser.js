@@ -1,11 +1,13 @@
 const User = require('../../models/userModel');
 
 const logoutUser = async (req, res) => {
-    const { _id } = req.user;
+  const { _id } = req.user;
 
-    await User.updateOne({ _id }, { accessToken: '', refreshToken: '' });
+  res.clearCookie('refreshToken');
 
-    res.status(204).json({ message: 'No Content' });
-}
+  await User.updateOne({ _id }, { accessToken: '', refreshToken: '' });
+
+  res.status(204).json({ message: 'No Content' });
+};
 
 module.exports = logoutUser;
