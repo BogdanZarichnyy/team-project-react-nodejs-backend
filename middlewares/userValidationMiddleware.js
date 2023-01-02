@@ -33,7 +33,7 @@ module.exports = {
   editUserProfileSchemaValidation: (req, res, next) => {
     const schema = Joi.object({
       name: Joi.string().min(1).max(40).optional(),
-      email: Joi.string().min(10).max(63).email().optional(),
+      email: Joi.string().min(7).max(63).email().optional(),
       photo: Joi.string().allow('').optional(),
       birthday: Joi.date().allow('').optional(),
       phone: Joi.string().allow('').optional(),
@@ -59,8 +59,8 @@ module.exports = {
 
   forgotUserPasswordSchemaValidation: (req, res, next) => {
     const schema = Joi.object({
-      email: Joi.string().email().min(10).max(63).required(),
-      password: Joi.string().min(7).max(32).required(),
+      email: Joi.string().email().min(7).max(63).required(),
+      // password: Joi.string().min(7).max(32).required(),
     });
     const validationResult = schema.validate(req.body);
     if (validationResult.error) {

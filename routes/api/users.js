@@ -12,6 +12,9 @@ const {
 } = require('../../middlewares/authenticateMiddleware');
 const controllerWrraper = require('../../helpers/controllerWrraper');
 const {
+  authRefTokenMiddleware,
+} = require('../../middlewares/authRefTokenMiddleware');
+const {
   registrationUser,
   loginUser,
   getCurrentUser,
@@ -20,7 +23,9 @@ const {
   editUserProfile,
   forgotUserPassword,
   logoutUser,
+  resendVerificationEmail,
   verify,
+  refreshToken,
 } = require('../../controllers/users');
 
 const router = express.Router();
@@ -60,6 +65,18 @@ router.post(
   '/forgot_password',
   forgotUserPasswordSchemaValidation,
   controllerWrraper(forgotUserPassword)
+);
+
+router.post(
+  '/verify',
+  forgotUserPasswordSchemaValidation,
+  controllerWrraper(resendVerificationEmail)
+);
+
+router.get(
+  '/refreshtoken',
+  authRefTokenMiddleware,
+  controllerWrraper(refreshToken)
 );
 
 router.get('/verify/:verificationToken', controllerWrraper(verify));

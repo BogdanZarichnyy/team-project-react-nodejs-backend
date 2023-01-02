@@ -7,7 +7,10 @@ async function verify(req, res) {
   const user = await User.findOne({ verificationToken });
 
   if (!user) {
-    throw new createError({ status: 404, message: 'User not found' });
+    throw new createError({
+      status: 404,
+      message: 'User not found or already verified',
+    });
   }
 
   await User.findByIdAndUpdate(user._id, {
