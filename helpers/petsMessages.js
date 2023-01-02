@@ -16,6 +16,5 @@ const petsMessages = {
   DELETE_PET_SUCCESS,
   CREATE_PET_SUCCESS,
 };
-module.exports = {
-  petsMessages,
-};
+
+module.exports = petsMessages;
