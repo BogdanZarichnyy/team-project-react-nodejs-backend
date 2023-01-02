@@ -24,12 +24,12 @@ const loginUser = async (req, res) => {
         id: user._id
     };
 
-    const accessToken = jwt.sign(userId, JWT_ACCESS_SECRET_KEY, { expiresIn: '1d' });
+    const accessToken = jwt.sign(userId, JWT_ACCESS_SECRET_KEY, { expiresIn: '15m' });
 
-    const refreshToken = jwt.sign(userId, JWT_REFRESH_SECRET_KEY, { expiresIn: '15m' });
+    const refreshToken = jwt.sign(userId, JWT_REFRESH_SECRET_KEY, { expiresIn: '1d' });
 
     const data = await User.findByIdAndUpdate(user._id, { accessToken, refreshToken }, { new: true })
-        .select({ password: 0, createdAt: 0, updatedAt: 0, accessToken: 0 });
+        .select({ password: 0, createdAt: 0, updatedAt: 0, refreshToken: 0 });
 
     res.status(200).json({
         user: data

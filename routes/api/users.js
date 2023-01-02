@@ -1,9 +1,9 @@
 const express = require('express');
 
-const { registerUserSchemaValidation, loginUserSchemaValidation, editUserProfileSchemaValidation, updateUserFavoritesAdsSchemaValidation } = require('../../middlewares/userValidationMiddleware');
+const { registerUserSchemaValidation, loginUserSchemaValidation, editUserProfileSchemaValidation, updateUserFavoritesAdsSchemaValidation, forgotUserPasswordSchemaValidation } = require('../../middlewares/userValidationMiddleware');
 const { userAuthenticate } = require('../../middlewares/authenticateMiddleware');
 const controllerWrraper = require('../../helpers/controllerWrraper');
-const { registrationUser, loginUser, getCurrentUser, addFavoritesAdsUser, deleteFavoritesAdsUser, editUserProfile, logoutUser } = require('../../controllers/users');
+const { registrationUser, loginUser, getCurrentUser, addFavoritesAdsUser, deleteFavoritesAdsUser, editUserProfile, forgotUserPassword, logoutUser } = require('../../controllers/users');
 
 const router = express.Router();
 
@@ -18,6 +18,8 @@ router.post('/favorites_ads', userAuthenticate, updateUserFavoritesAdsSchemaVali
 router.delete('/favorites_ads', userAuthenticate, updateUserFavoritesAdsSchemaValidation, controllerWrraper(deleteFavoritesAdsUser));
 
 router.patch('/profile', userAuthenticate, editUserProfileSchemaValidation, controllerWrraper(editUserProfile));
+
+router.post('/forgot_password', forgotUserPasswordSchemaValidation, controllerWrraper(forgotUserPassword));
 
 router.post('/logout', userAuthenticate, controllerWrraper(logoutUser));
 

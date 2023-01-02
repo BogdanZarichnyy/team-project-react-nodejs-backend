@@ -25,9 +25,9 @@ const registerUser = async (req, res) => {
         id: data._id
     };
 
-    const accessToken = jwt.sign(userId, JWT_ACCESS_SECRET_KEY, { expiresIn: '1d' });
+    const accessToken = jwt.sign(userId, JWT_ACCESS_SECRET_KEY, { expiresIn: '15m' });
 
-    const refreshToken = jwt.sign(userId, JWT_REFRESH_SECRET_KEY, { expiresIn: '15m' });
+    const refreshToken = jwt.sign(userId, JWT_REFRESH_SECRET_KEY, { expiresIn: '1d' });
 
     await User.findByIdAndUpdate(data._id, { accessToken, refreshToken });
 
@@ -41,7 +41,7 @@ const registerUser = async (req, res) => {
             birthday: data.birthday,
             phone: data.phone,
             city: data.city,
-            refreshToken,
+            accessToken,
         }
     });
 }
