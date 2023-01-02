@@ -7,7 +7,6 @@ const forgotUserPassword = async (req, res) => {
     const { email, password } = req.body;
 
     const user = await User.findOne({ email });
-    console.log(password);
 
     if (!user) {
         throw createError({ status: 409, message: `No user with e-mail ${email} found` });
