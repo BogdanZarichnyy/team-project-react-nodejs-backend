@@ -6,6 +6,7 @@ const deleteFavoritesAdsUser = require('./deleteFavoritesAdsUser');
 const editUserProfile = require('./editUserProfile');
 const forgotUserPassword = require('./forgotUserPassword');
 const logoutUser = require('./logoutUser');
+const resendVerificationEmail = require('./resendVerificationEmail');
 const verify = require('./verify');
 
 module.exports = {
@@ -17,5 +18,6 @@ module.exports = {
   editUserProfile,
   forgotUserPassword,
   logoutUser,
+  resendVerificationEmail,
   verify,
 };

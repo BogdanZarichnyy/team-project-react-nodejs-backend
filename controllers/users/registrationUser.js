@@ -4,9 +4,9 @@ const { createError } = require('../../helpers/createError');
 const { randomUUID } = require('crypto');
 const User = require('../../models/userModel');
 const sendSgEmail = require('../../helpers/sendSgEmail');
-require('dotenv').config();
+// require('dotenv').config();
 
-const { JWT_ACCESS_SECRET_KEY, JWT_REFRESH_SECRET_KEY, BASE_URL } = process.env;
+const { BASE_URL } = process.env;
 
 const registerUser = async (req, res) => {
   // birthday format "yyyy-mm-dd" example: 2000-10-04T00:00:00.000+00:00
