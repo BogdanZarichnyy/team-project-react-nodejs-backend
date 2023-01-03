@@ -7,23 +7,32 @@ module.exports = {
                 .pattern(/^[a-zA-Z- ]+$/)
                 .min(3)
                 .max(40)
+                .allow('')
                 .optional(),
+            family: Joi.string()
+                .required(),
             sex: Joi.string()
                 .required(),
             price: Joi.number()
                 .min(1)
-                .required(),
+                .optional(),
             category: Joi.string()
-                .required(),
+                .optional(),
             breed: Joi.string()
+                .allow('')
                 .optional(),
             birthDate: Joi.string()
+                .allow('')
                 .optional(),
             addTitle: Joi.string()
                 .required(),
+            imgURL: Joi.string()
+                .allow('')
+                .optional(),
             location: Joi.string()
                 .required(),
             comments: Joi.string()
+                .allow('')
                 .optional(),
         });
         const validationResult = schema.validate(req.body);
@@ -40,6 +49,8 @@ module.exports = {
                 .min(3)
                 .max(40)
                 .optional(),
+            family: Joi.string()
+                .optional(),
             price: Joi.number()
                 .min(1)
                 .optional(),
@@ -50,6 +61,8 @@ module.exports = {
             birthDate: Joi.string()
                 .optional(),
             addTitle: Joi.string()
+                .optional(),
+            imgURL: Joi.string()
                 .optional(),
             sex: Joi.string()
                 .optional(),

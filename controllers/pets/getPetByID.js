@@ -6,7 +6,7 @@ const petsMessages = require('../../helpers/petsMessages');
 const { NOT_VALID_ID, NOT_FOUND_PET } = petsMessages;
 
 const getPetByID = async (req, res) => {
-    const { contactId: id } = req.params;
+    const { petId: id } = req.params;
     const { _id } = req.user;
 
     if (!isValidObjectId(id)) {

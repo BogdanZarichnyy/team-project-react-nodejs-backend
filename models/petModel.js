@@ -7,10 +7,14 @@ const petSchema = new Schema(
             required: [true, 'Set name for add'],
             default: '',
         },
+        family: {
+            type: String,
+            required: [true, 'Set name for add'],
+        },
         category: {
             type: String,
-            enum: ['sell', 'inGoodHands', 'lost/found'],
-            default: 'inGoodHands',
+            enum: ['sale', 'inGoodHands', 'lostOrFound'],
+            // default: 'inGoodHands',
             required: [true, 'Set category of add'],
         },
         breed: {

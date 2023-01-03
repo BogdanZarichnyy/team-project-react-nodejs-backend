@@ -4,6 +4,8 @@ const cors = require('cors');
 
 const contactsRouter = require('./routes/api/pets');
 const usersRouter = require('./routes/api/users');
+const newsRouter = require('./routes/api/news');
+const oursFriendsRouter = require('./routes/api/oursFriends');
 
 const app = express();
 
@@ -15,6 +17,8 @@ app.use(express.json());
 
 app.use('/api/pets', contactsRouter);
 app.use('/api/users', usersRouter);
+app.use('/api/news', newsRouter);
+app.use('/api/ours_friends', oursFriendsRouter);
 
 app.use((req, res) => {
     res.status(404).json({ message: 'Not found' });
