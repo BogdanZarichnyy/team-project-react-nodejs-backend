@@ -4,6 +4,7 @@ module.exports = {
     registerUserSchemaValidation: (req, res, next) => {
         const schema = Joi.object({
             name: Joi.string()
+                .pattern(/^[a-zA-z ]+$/)
                 .min(1)
                 .max(40)
                 .required(),
@@ -54,6 +55,7 @@ module.exports = {
     editUserProfileSchemaValidation: (req, res, next) => {
         const schema = Joi.object({
             name: Joi.string()
+                .pattern(/^[a-zA-z ]+$/)
                 .min(1)
                 .max(40)
                 .optional(),
