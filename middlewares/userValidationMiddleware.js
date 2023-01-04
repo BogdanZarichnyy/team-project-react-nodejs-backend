@@ -3,8 +3,12 @@ const Joi = require('joi');
 module.exports = {
   registerUserSchemaValidation: (req, res, next) => {
     const schema = Joi.object({
-      name: Joi.string().min(1).max(40).required(),
-      email: Joi.string().email().min(7).max(63).required(),
+      name: Joi.string()
+        .pattern(/^[a-zA-z ]+$/)
+        .min(1)
+        .max(40)
+        .required(),
+      email: Joi.string().email().min(10).max(63).required(),
       password: Joi.string().min(7).max(32).required(),
       photo: Joi.string().allow(''),
       birthday: Joi.date().allow(''),
@@ -32,8 +36,12 @@ module.exports = {
 
   editUserProfileSchemaValidation: (req, res, next) => {
     const schema = Joi.object({
-      name: Joi.string().min(1).max(40).optional(),
-      email: Joi.string().min(7).max(63).email().optional(),
+      name: Joi.string()
+        .pattern(/^[a-zA-z ]+$/)
+        .min(1)
+        .max(40)
+        .optional(),
+      email: Joi.string().min(10).max(63).email().optional(),
       photo: Joi.string().allow('').optional(),
       birthday: Joi.date().allow('').optional(),
       phone: Joi.string().allow('').optional(),

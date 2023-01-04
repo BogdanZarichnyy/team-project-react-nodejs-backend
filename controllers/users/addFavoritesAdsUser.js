@@ -10,6 +10,7 @@ const addFavoritesAdsUser = async (req, res) => {
         throw createError({ status: 422, message: "Pet with such ID is not found" });
     }
 
+    // .findOne({_id: new ObjectId(id)});
     const user = await User.findById(_id);
 
     const index = user.favoritesAds.findIndex(item => item === petId);

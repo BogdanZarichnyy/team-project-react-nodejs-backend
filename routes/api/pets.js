@@ -15,9 +15,9 @@ router.get('/:petId', controllerWrraper(getPetByID));
 
 router.post('/', addPetValidation, controllerWrraper(addPet));
 
-router.put('/:petId', patchPetValidation, controllerWrraper(updatePetByID));
+router.patch('/:petId', patchPetValidation, controllerWrraper(updatePetByID));
 
-router.patch('/:petId/favorite', patchPetValidation, controllerWrraper(updateStatusPet));
+router.put('/:petId/status', patchPetValidation, controllerWrraper(updateStatusPet));
 
 router.delete('/:petId', controllerWrraper(deletePetByID));
 

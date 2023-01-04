@@ -11,7 +11,9 @@ const registerUser = async (req, res) => {
   // birthday format "yyyy-mm-dd" example: 2000-10-04T00:00:00.000+00:00
   const { name, email, password, birthday, phone, city } = req.body;
 
-  const findUser = await User.findOne({ email });
+  const normalizedEmail = email.toLowerCase();
+
+  const findUser = await User.findOne({ email: normalizedEmail });
 
   if (findUser) {
     throw createError({ status: 409, message: 'Email in use' });
@@ -23,7 +25,7 @@ const registerUser = async (req, res) => {
 
   const user = await User.create({
     name,
-    email,
+    email: normalizedEmail,
     password: bcryptHashPassword,
     birthday,
     phone,
