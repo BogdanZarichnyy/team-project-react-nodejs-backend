@@ -8,9 +8,6 @@ const { JWT_REFRESH_SECRET_KEY } = process.env;
 const authRefTokenMiddleware = async (req, res, next) => {
   try {
     const { refreshToken } = req.cookies;
-    console.log(refreshToken);
-
-    // const [bearer, token] = authorization.split(' ');
 
     if (!refreshToken) {
       throw createError({ status: 401, message: 'Not authorized' });
