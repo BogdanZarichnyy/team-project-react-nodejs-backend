@@ -19,8 +19,10 @@ const getAllPets = async (req, res) => {
   // }
 
   // const data = await Pet.find(params)
-  // const data = await Pet.find({ owner: _id, category })
-  const data = await Pet.find().select({ __v: 0 }).skip(skip).limit(limit);
+  const data = await Pet.find({ owner: _id, category })
+    .select({ __v: 0 })
+    .skip(skip)
+    .limit(limit);
 
   res.status(200).json(data);
 };
