@@ -8,8 +8,6 @@ const { getAllPets, getPetByID, getAllMyPets, getMyPetByID, addPet, updatePetByI
 
 const router = express.Router();
 
-// router.use(userAuthenticate);
-
 router.get('/', controllerWrraper(getAllPets));
 
 router.get('/my_ads', userAuthenticate, controllerWrraper(getAllMyPets));
@@ -18,7 +16,7 @@ router.get('/:petId', controllerWrraper(getPetByID));
 
 router.get('/my_ads/:petId', userAuthenticate, controllerWrraper(getMyPetByID));
 
-router.post('/', userAuthenticate, addPetValidation, controllerWrraper(addPet));
+router.post('/', userAuthenticate, addPetValidation, upload.single('photo'), controllerWrraper(addPet));
 
 router.patch('/:petId', patchPetValidation, controllerWrraper(updatePetByID));
 
