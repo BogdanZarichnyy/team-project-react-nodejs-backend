@@ -36,7 +36,7 @@ const loginUser = async (req, res) => {
   });
 
   const refreshToken = jwt.sign(userId, JWT_REFRESH_SECRET_KEY, {
-    expiresIn: '1d',
+    expiresIn: '30d',
   });
 
   const data = await User.findByIdAndUpdate(
@@ -46,7 +46,7 @@ const loginUser = async (req, res) => {
   ).select({ password: 0, createdAt: 0, updatedAt: 0, refreshToken: 0 });
 
   res.cookie('refreshToken', refreshToken, {
-    maxAge: 24 * 60 * 60 * 1000,
+    maxAge: 30 * 24 * 60 * 60 * 1000,
     httpOnly: true,
   });
 
