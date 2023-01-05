@@ -1,25 +1,16 @@
 const Pet = require('../../models/petModel');
 
 const getAllPets = async (req, res) => {
-    const { _id } = req.user;
-    // const { category, favorite, page = 1, limit = 8 } = req.query;
-    const { category = 'inGoodHands', page = 1, limit = 8 } = req.query;
+    const { category, page = 1, limit = 8 } = req.query;
     const skip = (parseInt(page) - 1) * parseInt(limit);
 
-    // const params = {
-    //     owner: _id
-    // }
+    const params = {};
 
-    // if (category) {
-    //     params.category = category;
-    // }
-
-    // if (favorite !== undefined) {
-    //     params.favorite = favorite;
-    // }
+    if (category !== undefined) {
+        params.category = category;
+    }
     
-    // const data = await Pet.find(params)
-    const data = await Pet.find({ owner: _id, category })
+    const data = await Pet.find(params)
         .select({ __v: 0 })
         .skip(skip)
         .limit(limit);

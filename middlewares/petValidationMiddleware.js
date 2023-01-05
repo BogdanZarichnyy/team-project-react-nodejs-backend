@@ -5,8 +5,8 @@ module.exports = {
         const schema = Joi.object({
             name: Joi.string()
                 .pattern(/^[a-zA-Z- ]+$/)
-                .min(3)
-                .max(40)
+                .min(1)
+                .max(50)
                 .allow('')
                 .optional(),
             family: Joi.string()

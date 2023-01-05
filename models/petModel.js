@@ -9,13 +9,13 @@ const petSchema = new Schema(
         },
         family: {
             type: String,
-            required: [true, 'Set name for add'],
+            required: [true, 'Set family for add'],
         },
         category: {
             type: String,
-            enum: ['sale', 'inGoodHands', 'lostOrFound'],
+            enum: ['sale', 'inGoodHands', 'lostFound'],
             // default: 'inGoodHands',
-            required: [true, 'Set category of add'],
+            required: [true, 'Set category of add'], // змінити модель тварин для категорій на необов'язкові поля + аргегації для масиву улюбленців для видалення оголошень у всіх користувачів
         },
         breed: {
             type: String,
@@ -30,7 +30,7 @@ const petSchema = new Schema(
             default: '',
             required: [true, 'Set title of add'],
         },
-        imgURL: {
+        photo: {
             type: String,
             default: '',
         },
@@ -56,15 +56,13 @@ const petSchema = new Schema(
         owner: {
             type: Schema.Types.ObjectId,
             ref: 'user',
-            required: true,
-            // default: '',
+            required: true
         },
-        // status: {
-        //     type: String,
-        //     enum: ['open', 'close' ],
-        //     default: 'open',
-        //     required: true
-        // }
+        favoritesAds: [{
+            type: Schema.Types.ObjectId,
+            unique: true,
+            ref: "user"
+        }],
     },
     { versionKey: false, timestamps: true }
 );

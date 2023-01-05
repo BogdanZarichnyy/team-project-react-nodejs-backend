@@ -17,7 +17,7 @@ const userSchema = new Schema({
         type: String,
         required: [true, 'Set password for user'],
     },
-    photo: {
+    avatar: {
         type: String,
         default: ''
     },

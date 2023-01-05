@@ -36,7 +36,7 @@ const registerUser = async (req, res) => {
     res.status(201).json({
         message: `User ${data.name} registered`,
         user: {
-            userId: data._id,
+            _id: data._id,
             name: data.name,
             email: data.email,
             photo: data.photo,
