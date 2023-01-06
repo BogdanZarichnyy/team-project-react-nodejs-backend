@@ -1,9 +1,9 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+
 const { createError } = require('../../helpers/createError');
 const { randomUUID } = require('crypto');
 const User = require('../../models/userModel');
-// require('dotenv').config();
 
 const { JWT_ACCESS_SECRET_KEY, JWT_REFRESH_SECRET_KEY } = process.env;
 

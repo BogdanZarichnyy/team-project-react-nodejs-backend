@@ -3,8 +3,9 @@ const logger = require('morgan');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 
-const contactsRouter = require('./routes/api/pets');
+const adsRouter = require('./routes/api/ads');
 const usersRouter = require('./routes/api/users');
+const petsRouter = require('./routes/api/pets');
 const newsRouter = require('./routes/api/news');
 const oursFriendsRouter = require('./routes/api/oursFriends');
 
@@ -21,9 +22,11 @@ app.use(
 );
 app.use(express.json());
 app.use(cookieParser());
+app.use(express.urlencoded({ extended: false }));
 
-app.use('/api/pets', contactsRouter);
+app.use('/api/ads', adsRouter);
 app.use('/api/users', usersRouter);
+app.use('/api/pets', petsRouter);
 app.use('/api/news', newsRouter);
 app.use('/api/ours_friends', oursFriendsRouter);
 

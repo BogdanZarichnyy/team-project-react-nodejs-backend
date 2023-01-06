@@ -1,6 +1,7 @@
 const { Schema, model } = require('mongoose');
 
-// const emailRegexp = /^[a-zA-Z0-9.-_]{2}@[a-z]+\.[a-z]{2,3}$/;
+const emailRegexp =
+  /^([a-z0-9._]{1}[a-z0-9._-]+)+@[a-z0-9._-]+\.([a-z0-9._-]*[a-z0-9._]+)$/;
 
 const userSchema = new Schema(
   {
@@ -10,7 +11,7 @@ const userSchema = new Schema(
     },
     email: {
       type: String,
-      // match: emailRegexp,
+      match: emailRegexp,
       required: [true, 'Email is required'],
       unique: true,
     },
@@ -18,7 +19,7 @@ const userSchema = new Schema(
       type: String,
       required: [true, 'Set password for user'],
     },
-    photo: {
+    avatar: {
       type: String,
       default: '',
     },

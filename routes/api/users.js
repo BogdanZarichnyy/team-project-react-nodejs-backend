@@ -6,14 +6,12 @@ const {
   editUserProfileSchemaValidation,
   updateUserFavoritesAdsSchemaValidation,
   forgotUserPasswordSchemaValidation,
-} = require('../../middlewares/userValidationMiddleware');
+} = require('../../validation/userValidation');
 const {
   userAuthenticate,
 } = require('../../middlewares/authenticateMiddleware');
 const controllerWrraper = require('../../helpers/controllerWrraper');
-const {
-  authRefTokenMiddleware,
-} = require('../../middlewares/authRefTokenMiddleware');
+const upload = require('../../middlewares/uploadUserAvatarMiddlware');
 const {
   registrationUser,
   loginUser,
@@ -21,12 +19,16 @@ const {
   addFavoritesAdsUser,
   deleteFavoritesAdsUser,
   editUserProfile,
+  updateUserAvatar,
   forgotUserPassword,
   logoutUser,
   resendVerificationEmail,
   verify,
   refreshToken,
 } = require('../../controllers/users');
+const {
+  authRefTokenMiddleware,
+} = require('../../middlewares/authRefTokenMiddleware');
 
 const router = express.Router();
 
@@ -38,7 +40,7 @@ router.post(
 
 router.post('/login', loginUserSchemaValidation, controllerWrraper(loginUser));
 
-router.post('/current', userAuthenticate, controllerWrraper(getCurrentUser));
+router.get('/current', userAuthenticate, controllerWrraper(getCurrentUser));
 
 router.post(
   '/favorites_ads',
@@ -81,6 +83,13 @@ router.get(
 
 router.get('/verify/:verificationToken', controllerWrraper(verify));
 
-router.post('/logout', userAuthenticate, controllerWrraper(logoutUser));
+router.post(
+  '/avatar',
+  userAuthenticate,
+  upload.single('avatar'),
+  controllerWrraper(updateUserAvatar)
+);
+
+router.get('/logout', userAuthenticate, controllerWrraper(logoutUser));
 
 module.exports = router;
