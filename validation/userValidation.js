@@ -1,15 +1,18 @@
 const Joi = require('joi');
 
+const emailRegexp = /^([a-z0-9._]{1}[a-z0-9._-]+)+@[a-z0-9._-]+\.([a-z0-9._-]*[a-z0-9._]+)$/;
+
 module.exports = {
     registerUserSchemaValidation: (req, res, next) => {
         const schema = Joi.object({
             name: Joi.string()
-                .pattern(/^[a-zA-z ]+$/)
+                .pattern(/^[а-яА-Яa-zA-Z- ]+$/)
                 .min(1)
                 .max(40)
                 .required(),
             email: Joi.string()
                 .email()
+                .pattern(emailRegexp)
                 .min(10)
                 .max(63)
                 .required(),
@@ -40,9 +43,10 @@ module.exports = {
                 .max(32)
                 .required(),
             email: Joi.string()
+                .email()
+                .pattern(emailRegexp)
                 .min(10)
                 .max(63)
-                .email()
                 .required(),
         });
         const validationResult = schema.validate(req.body);
@@ -55,14 +59,15 @@ module.exports = {
     editUserProfileSchemaValidation: (req, res, next) => {
         const schema = Joi.object({
             name: Joi.string()
-                .pattern(/^[a-zA-z ]+$/)
+                .pattern(/^[а-яА-Яa-zA-Z- ]+$/)
                 .min(1)
                 .max(40)
                 .optional(),
             email: Joi.string()
+                .email()
+                .pattern(emailRegexp)
                 .min(10)
                 .max(63)
-                .email()
                 .optional(),
             photo: Joi.string()
                 .allow('')

@@ -1,24 +1,20 @@
 const express = require('express');
 
 const { userAuthenticate } = require('../../middlewares/authenticateMiddleware');
-const { addPetValidation, patchPetValidation } = require('../../middlewares/petValidationMiddleware');
 const controllerWrraper = require('../../helpers/controllerWrraper');
-const { getAllPets, getPetByID, addPet, updatePetByID, updateStatusPet, deletePetByID } = require('../../controllers/pets');
+const upload = require('../../middlewares/uploadFilesMiddleware');
+const { getAllMyPets, addMyPet, updateMyPetByID, deleteMyPetByID } = require('../../controllers/pets');
 
 const router = express.Router();
 
 router.use(userAuthenticate);
 
-router.get('/', controllerWrraper(getAllPets));
+router.get('/', controllerWrraper(getAllMyPets));
 
-router.get('/:petId', controllerWrraper(getPetByID));
+router.post('/', upload.fields([ { name: 'photo', maxCount: 1 }, { name: 'passport', maxCount: 1 } ]), controllerWrraper(addMyPet));
 
-router.post('/', addPetValidation, controllerWrraper(addPet));
+router.patch('/:petId', upload.fields([ { name: 'photo', maxCount: 1 }, { name: 'passport', maxCount: 1 } ]), controllerWrraper(updateMyPetByID));
 
-router.patch('/:petId', patchPetValidation, controllerWrraper(updatePetByID));
-
-router.put('/:petId/status', patchPetValidation, controllerWrraper(updateStatusPet));
-
-router.delete('/:petId', controllerWrraper(deletePetByID));
+router.delete('/:petId', controllerWrraper(deleteMyPetByID));
 
 module.exports = router;

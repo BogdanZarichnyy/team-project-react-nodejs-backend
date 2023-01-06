@@ -1,14 +1,12 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const { createError } = require('../../helpers/createError');
-// const { randomUUID } = require('crypto');
 const User = require('../../models/userModel');
+const { createError } = require('../../helpers/createError');
 require('dotenv').config();
 
 const { JWT_ACCESS_SECRET_KEY, JWT_REFRESH_SECRET_KEY } = process.env;
 
 const registerUser = async (req, res) => {
-    // birthday format "yyyy-mm-dd" example: 2000-10-04T00:00:00.000+00:00
     const { name, email, password, birthday, phone, city } = req.body;
 
     const normalizedEmail = email.toLowerCase();
@@ -36,7 +34,7 @@ const registerUser = async (req, res) => {
     res.status(201).json({
         message: `User ${data.name} registered`,
         user: {
-            userId: data._id,
+            _id: data._id,
             name: data.name,
             email: data.email,
             photo: data.photo,

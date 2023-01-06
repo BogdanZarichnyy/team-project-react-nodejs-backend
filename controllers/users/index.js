@@ -4,6 +4,7 @@ const getCurrentUser = require('./currentUser');
 const addFavoritesAdsUser = require('./addFavoritesAdsUser');
 const deleteFavoritesAdsUser = require('./deleteFavoritesAdsUser');
 const editUserProfile = require('./editUserProfile');
+const updateUserAvatar = require('./updateUserAvatar');
 const forgotUserPassword = require('./forgotUserPassword');
 const logoutUser = require('./logoutUser');
 
@@ -14,6 +15,7 @@ module.exports = {
     addFavoritesAdsUser,
     deleteFavoritesAdsUser,
     editUserProfile,
+    updateUserAvatar,
     forgotUserPassword,
     logoutUser
 }

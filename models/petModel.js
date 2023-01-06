@@ -4,67 +4,42 @@ const petSchema = new Schema(
     {
         name: {
             type: String,
-            required: [true, 'Set name for add'],
-            default: '',
+            required: [true, 'Set name for pet'],
         },
         family: {
             type: String,
-            required: [true, 'Set name for add'],
-        },
-        category: {
-            type: String,
-            enum: ['sale', 'inGoodHands', 'lostOrFound'],
-            // default: 'inGoodHands',
-            required: [true, 'Set category of add'],
-        },
-        breed: {
-            type: String,
-            default: '',
+            default: ''
         },
         birthDate: {
             type: Date,
-            default: ''
+            required: [true, 'Set birthdate for pet'],
         },
-        addTitle: {
+        breed: {
             type: String,
-            default: '',
-            required: [true, 'Set title of add'],
-        },
-        imgURL: {
-            type: String,
-            default: '',
+            required: [true, 'Set breed for pet'],
         },
         sex: {
             type: String,
             enum: ['male', 'female'],
             default: 'male',
-            required: [true, 'Set sex of add'],
+        },
+        photo: {
+            type: String,
+            default: '',
+        },
+        passport: {
+            type: String,
+            default: '',
         },
         comments: {
             type: String,
             default: '',
         },
-        location: {
-            type: String,
-            default: '',
-            required: [true, 'Set location of add'],
-        },
-        price: {
-            type: Number,
-            default: '',
-        },
         owner: {
             type: Schema.Types.ObjectId,
             ref: 'user',
-            required: true,
-            // default: '',
+            required: true
         },
-        // status: {
-        //     type: String,
-        //     enum: ['open', 'close' ],
-        //     default: 'open',
-        //     required: true
-        // }
     },
     { versionKey: false, timestamps: true }
 );
