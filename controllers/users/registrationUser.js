@@ -8,8 +8,7 @@ const User = require('../../models/userModel');
 const { JWT_ACCESS_SECRET_KEY, JWT_REFRESH_SECRET_KEY } = process.env;
 
 const registerUser = async (req, res) => {
-  // birthday format "yyyy-mm-dd" example: 2000-10-04T00:00:00.000+00:00
-  const { name, email, password, birthday, phone, city } = req.body;
+  const { name, email, password, phone, city } = req.body;
 
   const normalizedEmail = email.toLowerCase();
 
@@ -27,7 +26,6 @@ const registerUser = async (req, res) => {
     name,
     email: normalizedEmail,
     password: bcryptHashPassword,
-    birthday,
     phone,
     city,
     verificationToken,
@@ -64,7 +62,6 @@ const registerUser = async (req, res) => {
       name: data.name,
       email: data.email,
       photo: data.photo,
-      birthday: data.birthday,
       phone: data.phone,
       city: data.city,
       accessToken,
@@ -91,7 +88,7 @@ module.exports = registerUser;
 
 // const registerUser = async (req, res) => {
 //   // birthday format "yyyy-mm-dd" example: 2000-10-04T00:00:00.000+00:00
-//   const { name, email, password, birthday, phone, city } = req.body;
+//   const { name, email, password, phone, city } = req.body;
 
 //   const user = await User.findOne({ email });
 
@@ -107,7 +104,7 @@ module.exports = registerUser;
 //     name,
 //     email,
 //     password: bcryptHashPassword,
-//     birthday,
+//
 //     phone,
 //     city,
 //     verificationToken,
@@ -128,7 +125,6 @@ module.exports = registerUser;
 //       name: data.name,
 //       email: data.email,
 //       photo: data.photo,
-//       birthday: data.birthday,
 //       phone: data.phone,
 //       city: data.city,
 //     },
