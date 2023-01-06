@@ -1,6 +1,6 @@
 const { isValidObjectId } = require('mongoose');
-const { createError } = require('../../helpers/createError');
 const User = require('../../models/userModel');
+const { createError } = require('../../helpers/createError');
 
 const deleteFavoritesAdsUser = async (req, res) => {
     const { _id } = req.user;
@@ -10,6 +10,7 @@ const deleteFavoritesAdsUser = async (req, res) => {
         throw createError({ status: 422, message: "Pet with such ID is not found" });
     }
 
+    // .findOne({_id: new ObjectId(id)});
     const user = await User.findById(_id);
 
     const index = user.favoritesAds.findIndex(item => item === petId);

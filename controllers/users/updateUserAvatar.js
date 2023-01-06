@@ -2,26 +2,12 @@ const cloudinary = require('cloudinary').v2;
 const path = require('path');
 const fs = require('fs/promises');
 const User = require('../../models/userModel');
-// const Jimp = require('jimp');
-
-// console.log(cloudinary.config());
 
 const USER_AVATAR_TEMP_DIR = path.join(__dirname, '..', '..', 'temp', 'users_avatars');
 
 const updateUserAvatar = async (req, res) => {
     const { _id } = req.user;
-    // const { path: userAvatarTempPath, filename } = req.file;
-    // console.log(userAvatarTempPath);
-    // console.log(filename);
     const { filename } = req.file;
-
-    // const extension = path.extname(originalname);
-    // const filename = `${_id}${extension}`;
-
-    // const userAvatarPath = path.join(USER_AVATAR_TEMP_DIR, filename);
-
-    // const userAvatar = await Jimp.read(userAvatarTempPath);
-    // userAvatar.resize(250, 250).write(userAvatarTempPath);
 
     const userAvatarPath = path.join(USER_AVATAR_TEMP_DIR, filename);
 
@@ -30,15 +16,7 @@ const updateUserAvatar = async (req, res) => {
         folder: '/goit_team_project_react_nodejs/users_avatars',
         overwrite: true,
     })
-        // .then(result => {
-        //     console.log('User avatar uploaded:', result);
-        //     return result;
-        // })
         .catch(error => console.error(error));
-
-    // console.log(userAvatar);
-    
-    // console.log(userAvatar.url);
 
     await fs.unlink(userAvatarPath);
 

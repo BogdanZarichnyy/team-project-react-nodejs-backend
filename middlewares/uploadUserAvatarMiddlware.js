@@ -1,7 +1,6 @@
 const multer = require('multer');
 const path = require('path');
 const { v4: uuidv4 } = require('uuid');
-const { createError } = require('../helpers/createError');
 
 const USER_AVATAR_TEMP_DIR = path.join(__dirname, '..', 'temp', 'users_avatars');
 

@@ -1,13 +1,7 @@
-// const jwt = require('jsonwebtoken');
-// const { createError } = require('../../helpers/createError');
-// const { randomUUID } = require('crypto');
 const User = require('../../models/userModel');
 require('dotenv').config();
 
-// const { JWT_ACCESS_SECRET_KEY, JWT_REFRESH_SECRET_KEY } = process.env;
-
 const editUserProfile = async (req, res) => {
-    // birthday format "yyyy-mm-dd" example: 2000-10-04T00:00:00.000+00:00
     const { _id } = req.user;
 
     const key = Object.keys(req.body);

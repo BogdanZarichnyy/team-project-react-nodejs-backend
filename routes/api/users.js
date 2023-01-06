@@ -1,6 +1,6 @@
 const express = require('express');
 
-const { registerUserSchemaValidation, loginUserSchemaValidation, editUserProfileSchemaValidation, updateUserFavoritesAdsSchemaValidation, forgotUserPasswordSchemaValidation } = require('../../middlewares/userValidationMiddleware');
+const { registerUserSchemaValidation, loginUserSchemaValidation, editUserProfileSchemaValidation, updateUserFavoritesAdsSchemaValidation, forgotUserPasswordSchemaValidation } = require('../../validation/userValidation');
 const { userAuthenticate } = require('../../middlewares/authenticateMiddleware');
 const controllerWrraper = require('../../helpers/controllerWrraper');
 const upload = require('../../middlewares/uploadUserAvatarMiddlware');
