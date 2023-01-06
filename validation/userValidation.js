@@ -36,7 +36,7 @@ module.exports = {
       email: Joi.string()
         .email()
         .pattern(emailRegexp)
-        .min(10)
+        .min(7)
         .max(63)
         .required(),
     });
