@@ -1,8 +1,19 @@
+const { isValidObjectId } = require('mongoose');
 const User = require('../../models/userModel');
-require('dotenv').config();
+const { createError } = require('../../helpers/createError');
+const { editUserProfileValidationSchema } = require('../../validation/userValidation');
 
 const editUserProfile = async (req, res) => {
     const { _id } = req.user;
+
+    if (!isValidObjectId(_id)) {
+        throw createError({ status: 422, message: 'ID is not valid for MongoDB documents, please enter correct userId' });
+    }
+
+    const validationResult = editUserProfileValidationSchema.validate(req.body);
+    if (validationResult.error) {
+        return res.status(400).json({ message: validationResult.error.message });
+    }
 
     const key = Object.keys(req.body);
 
