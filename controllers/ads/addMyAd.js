@@ -8,7 +8,7 @@ const { addAdValidationSchema } = require('../../validation/adsValidation');
 const FILES_TEMP_DIR = path.join(__dirname, '..', '..', 'temp', 'files');
     
 const addMyAd = async (req, res) => {
-    const { _id } = req.user;
+    const { _id, email, phone } = req.user;
     const { photo, passport } = req.files;
 
     const validationResult = addAdValidationSchema.validate(req.body);
@@ -21,7 +21,7 @@ const addMyAd = async (req, res) => {
         ...req.body,
     };
 
-    const newAd = await Ad.create({ ...params, owner: _id });
+    const newAd = await Ad.create({ ...params, owner: { _id, email, phone } });
 
     if (!newAd) {
         throw createError({ status: 500, message: 'Ad creation error' });
