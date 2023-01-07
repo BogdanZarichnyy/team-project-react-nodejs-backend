@@ -55,9 +55,19 @@ const adSchema = new Schema(
             default: null,
         },
         owner: {
-            type: Schema.Types.ObjectId,
-            ref: 'user',
-            required: true
+            _id: {
+                type: Schema.Types.ObjectId,
+                ref: 'user',
+                required: true
+            },
+            email: {
+                type: Schema.Types.String,
+                required: true
+            },
+            phone: {
+                type: Schema.Types.String,
+                required: true
+            },
         },
         follovers: [{
             type: Schema.Types.ObjectId,
