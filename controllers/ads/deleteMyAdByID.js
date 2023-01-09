@@ -24,7 +24,10 @@ const deleteMyAdByID = async (req, res) => {
             .catch(error => console.error(error));
     }
 
-    res.status(200).json({ message: 'Ad deleted' });
+    res.status(200).json({
+        message: 'Ad deleted',
+        ad: data
+    });
 }
 
 module.exports = deleteMyAdByID;

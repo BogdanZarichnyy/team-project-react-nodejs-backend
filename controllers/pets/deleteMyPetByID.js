@@ -24,7 +24,10 @@ async function deleteMyPetByID(req, res) {
             .catch(error => console.error(error));
     }
 
-    res.status(200).json({ message: 'Pet deleted' });
+    res.status(200).json({
+        message: 'Pet deleted',
+        ad: data
+    });
 }
 
 module.exports = deleteMyPetByID;
