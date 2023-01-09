@@ -9,7 +9,8 @@ const addAdValidationSchema = Joi.object({
     birthDate: Joi.string()
         .required(),
     family: Joi.string()
-        .required(),
+        .allow('')
+        .optional(),
     breed: Joi.string()
         .required(),
     sex: Joi.string()
@@ -17,8 +18,8 @@ const addAdValidationSchema = Joi.object({
     passport: Joi.string()
         .allow('')
         .optional(),
-    price: Joi.number()
-        .allow(null)
+    price: Joi.string()
+        .allow('')
         .min(1)
         .optional(),
     category: Joi.string()

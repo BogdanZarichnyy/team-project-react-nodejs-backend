@@ -38,11 +38,11 @@ const loginUser = async (req, res) => {
   };
 
   const accessToken = jwt.sign(userId, JWT_ACCESS_SECRET_KEY, {
-    expiresIn: '15m',
+    expiresIn: '1d',
   });
 
   const refreshToken = jwt.sign(userId, JWT_REFRESH_SECRET_KEY, {
-    expiresIn: '30d',
+    expiresIn: '1d',
   });
 
   const data = await User.findByIdAndUpdate(

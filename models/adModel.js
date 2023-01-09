@@ -8,7 +8,8 @@ const adSchema = new Schema(
         },
         family: {
             type: String,
-            required: [true, 'Set family for pet'],
+            default: '',
+            // required: [true, 'Set family for pet'],
         },
         category: {
             type: String,
@@ -51,8 +52,8 @@ const adSchema = new Schema(
             required: [true, 'Set location of ad'],
         },
         price: {
-            type: Number,
-            default: null,
+            type: String,
+            default: '',
         },
         owner: {
             _id: {
