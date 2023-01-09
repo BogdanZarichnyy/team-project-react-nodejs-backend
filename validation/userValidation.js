@@ -1,7 +1,7 @@
 const Joi = require('joi');
 
 const emailRegexp =
-  /^([a-z0-9._]{1}[a-z0-9._-]+)+@[a-z0-9._-]+\.([a-z0-9._-]*[a-z0-9._]+)$/;
+  /^([a-zA-Z0-9._]{1}[a-zA-Z0-9._-]+)+@[a-zA-Z0-9._-]+\.([a-zA-Z0-9._-]*[a-zA-Z0-9._]+)$/;
 
 const registerUserValidationSchema = Joi.object({
   name: Joi.string()
@@ -34,7 +34,7 @@ const loginUserValidationSchema = Joi.object({
 
 const editUserProfileValidationSchema = Joi.object({
   name: Joi.string()
-    .pattern(/^[а-яА-Яa-zA-Z- ]+$/)
+    .pattern(emailRegexp)
     .min(1)
     .max(40)
     .optional(),
@@ -52,6 +52,7 @@ const editUserProfileValidationSchema = Joi.object({
 
 const forgotUserPasswordValidationSchema = Joi.object({
   email: Joi.string()
+    .email()
     .pattern(emailRegexp)
     .min(7)
     .max(63)

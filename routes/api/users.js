@@ -25,60 +25,27 @@ const {
 
 const router = express.Router();
 
-router.post(
-  '/registration',
-  controllerWrraper(registrationUser)
-);
+router.post('/registration', controllerWrraper(registrationUser));
 
-router.post(
-    '/login',
-    controllerWrraper(loginUser)
-);
+router.post('/login', controllerWrraper(loginUser));
 
 router.get('/current', userAuthenticate, controllerWrraper(getCurrentUser));
 
-router.post(
-  '/favorites_ads',
-  userAuthenticate,
-  controllerWrraper(addFavoritesAdsUser)
-);
+router.post('/favorites_ads', userAuthenticate, controllerWrraper(addFavoritesAdsUser));
 
-router.delete(
-  '/favorites_ads',
-  userAuthenticate,
-  controllerWrraper(deleteFavoritesAdsUser)
-);
+router.delete('/favorites_ads', userAuthenticate, controllerWrraper(deleteFavoritesAdsUser));
 
-router.patch(
-  '/profile',
-  userAuthenticate,
-  controllerWrraper(editUserProfile)
-);
+router.patch('/profile', userAuthenticate, controllerWrraper(editUserProfile));
 
-router.post(
-  '/forgot_password',
-  controllerWrraper(forgotUserPassword)
-);
+router.post('/forgot_password', controllerWrraper(forgotUserPassword));
 
-router.post(
-  '/verify',
-  controllerWrraper(resendVerificationEmail)
-);
+router.post('/verify', controllerWrraper(resendVerificationEmail));
 
-router.get(
-  '/refreshtoken',
-  authRefTokenMiddleware,
-  controllerWrraper(refreshToken)
-);
+router.get('/refreshtoken', authRefTokenMiddleware, controllerWrraper(refreshToken));
 
 router.get('/verify/:verificationToken', controllerWrraper(verify));
 
-router.post(
-  '/avatar',
-  userAuthenticate,
-  upload.single('avatar'),
-  controllerWrraper(updateUserAvatar)
-);
+router.post('/avatar', userAuthenticate, upload.single('avatar'), controllerWrraper(updateUserAvatar));
 
 router.get('/logout', userAuthenticate, controllerWrraper(logoutUser));
 
