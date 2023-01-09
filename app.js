@@ -25,7 +25,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));
 
-app.use('/api/ads', adsRouter);
+app.use('/api/notices', adsRouter);
 app.use('/api/users', usersRouter);
 app.use('/api/pets', petsRouter);
 app.use('/api/news', newsRouter);
