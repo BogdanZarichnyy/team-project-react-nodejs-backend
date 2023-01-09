@@ -10,6 +10,10 @@ const FILES_TEMP_DIR = path.join(__dirname, '..', '..', 'temp', 'files');
 const addMyPet = async (req, res) => {
     const { _id } = req.user;
     const { photo, passport } = req.files;
+    
+    // if (req.files !== undefined) {
+    //     const { photo, passport } = req.files;
+    // }
 
     const validationResult = addMyPetValidationSchema.validate(req.body);
 
