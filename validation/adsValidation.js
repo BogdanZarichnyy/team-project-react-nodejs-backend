@@ -33,7 +33,7 @@ const addAdValidationSchema = Joi.object({
         .required(),
     comments: Joi.string()
         .allow('')
-        .optional(),
+        .optional()
 });
 
 const updateAdValidationSchema = Joi.object({
@@ -61,7 +61,7 @@ const updateAdValidationSchema = Joi.object({
         .optional(),
     sex: Joi.string()
         .optional(),
-    comments: Joi.string()
+    comments:  Joi.string()
         .allow('')
         .optional(),
     location: Joi.string()

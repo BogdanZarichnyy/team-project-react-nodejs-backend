@@ -9,9 +9,9 @@ const router = express.Router();
 
 router.get('/', controllerWrraper(getAllAds));
 
-router.post('/:adId/favorites_ads', userAuthenticate, controllerWrraper(getFavoritesAds));
+router.get('/my_notices', userAuthenticate, controllerWrraper(getMyAds));
 
-router.get('/my_ads', userAuthenticate, controllerWrraper(getMyAds));
+router.post('/:adId/favorites', userAuthenticate, controllerWrraper(getFavoritesAds));
 
 router.post('/', userAuthenticate, upload.fields([ { name: 'photo', maxCount: 1 }, { name: 'passport', maxCount: 1 } ]), controllerWrraper(addMyAd));
 
