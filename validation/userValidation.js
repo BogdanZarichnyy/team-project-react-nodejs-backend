@@ -1,7 +1,5 @@
 const Joi = require('joi');
-
-const emailRegexp =
-  /^([a-z0-9._]{1}[a-z0-9._-]+)+@[a-z0-9._-]+\.([a-z0-9._-]*[a-z0-9._]+)$/;
+const emailRegexp = require('../helpers/validateEmail');
 
 const registerUserValidationSchema = Joi.object({
   name: Joi.string()
@@ -9,12 +7,7 @@ const registerUserValidationSchema = Joi.object({
     .min(1)
     .max(40)
     .required(),
-  email: Joi.string()
-    .email()
-    .pattern(emailRegexp)
-    .min(7)
-    .max(63)
-    .required(),
+  email: Joi.string().email().pattern(emailRegexp).min(7).max(63).required(),
   password: Joi.string().min(7).max(32).required(),
   photo: Joi.string().allow(''),
   birthday: Joi.date().allow(''),
@@ -24,12 +17,7 @@ const registerUserValidationSchema = Joi.object({
 
 const loginUserValidationSchema = Joi.object({
   password: Joi.string().min(7).max(32).required(),
-  email: Joi.string()
-    .email()
-    .pattern(emailRegexp)
-    .min(7)
-    .max(63)
-    .required(),
+  email: Joi.string().email().pattern(emailRegexp).min(7).max(63).required(),
 });
 
 const editUserProfileValidationSchema = Joi.object({
@@ -38,12 +26,7 @@ const editUserProfileValidationSchema = Joi.object({
     .min(1)
     .max(40)
     .optional(),
-  email: Joi.string()
-    .email()
-    .pattern(emailRegexp)
-    .min(7)
-    .max(63)
-    .optional(),
+  email: Joi.string().email().pattern(emailRegexp).min(7).max(63).optional(),
   photo: Joi.string().allow('').optional(),
   birthday: Joi.date().allow('').optional(),
   phone: Joi.string().allow('').optional(),
@@ -51,16 +34,12 @@ const editUserProfileValidationSchema = Joi.object({
 });
 
 const forgotUserPasswordValidationSchema = Joi.object({
-  email: Joi.string()
-    .pattern(emailRegexp)
-    .min(7)
-    .max(63)
-    .required(),
+  email: Joi.string().email().pattern(emailRegexp).min(7).max(63).required(),
 });
 
 module.exports = {
   registerUserValidationSchema,
   loginUserValidationSchema,
   editUserProfileValidationSchema,
-  forgotUserPasswordValidationSchema
-}
+  forgotUserPasswordValidationSchema,
+};

@@ -44,6 +44,4 @@ const userAuthenticate = async (req, res, next) => {
   }
 };
 
-module.exports = {
-  userAuthenticate,
-};
+module.exports = userAuthenticate;

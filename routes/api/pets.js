@@ -1,22 +1,14 @@
 const express = require('express');
 
-const {
-  userAuthenticate,
-} = require('../../middlewares/authenticateMiddleware');
+const userAuthenticate = require('../../middlewares/authenticateMiddleware');
 const controllerWrraper = require('../../helpers/controllerWrraper');
 const upload = require('../../middlewares/uploadFilesMiddleware');
-const {
-  getAllMyPets,
-  addMyPet,
-  updateMyPetByID,
-  deleteMyPetByID,
-} = require('../../controllers/pets');
-
+const petControllers = require('../../controllers/pets');
 const router = express.Router();
 
 router.use(userAuthenticate);
 
-router.get('/', controllerWrraper(getAllMyPets));
+router.get('/', controllerWrraper(petControllers.getAllMyPets));
 
 router.post(
   '/',
@@ -24,7 +16,7 @@ router.post(
     { name: 'photo', maxCount: 1 },
     { name: 'passport', maxCount: 1 },
   ]),
-  controllerWrraper(addMyPet)
+  controllerWrraper(petControllers.addMyPet)
 );
 
 router.patch(
@@ -33,9 +25,9 @@ router.patch(
     { name: 'photo', maxCount: 1 },
     { name: 'passport', maxCount: 1 },
   ]),
-  controllerWrraper(updateMyPetByID)
+  controllerWrraper(petControllers.updateMyPetByID)
 );
 
-router.delete('/:petId', controllerWrraper(deleteMyPetByID));
+router.delete('/:petId', controllerWrraper(petControllers.deleteMyPetByID));
 
 module.exports = router;

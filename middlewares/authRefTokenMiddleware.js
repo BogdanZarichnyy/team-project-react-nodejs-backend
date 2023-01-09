@@ -36,6 +36,4 @@ const authRefTokenMiddleware = async (req, res, next) => {
   }
 };
 
-module.exports = {
-  authRefTokenMiddleware,
-};
+module.exports = authRefTokenMiddleware;
