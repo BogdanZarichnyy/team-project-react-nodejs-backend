@@ -2,7 +2,11 @@ const Joi = require('joi');
 const regExp = require('../helpers/regExp');
 
 const registerUserValidationSchema = Joi.object({
-  name: Joi.string().pattern(regExp.nameRegExp).min(1).max(40).required(),
+  name: Joi.string()
+    .pattern(regExp.nameRegExp)
+    .min(1)
+    .max(40)
+    .required(),
   email: Joi.string()
     .email()
     .pattern(regExp.emailRegExp)
@@ -14,10 +18,14 @@ const registerUserValidationSchema = Joi.object({
     .min(7)
     .max(32)
     .required(),
-  photo: Joi.string().allow(''),
-  birthday: Joi.string().allow(''),
-  phone: Joi.string().required(),
-  city: Joi.string().required(),
+  photo: Joi.string()
+    .allow(''),
+  birthday: Joi.string()
+    .allow(''),
+  phone: Joi.string()
+    .required(),
+  city: Joi.string()
+    .required(),
 });
 
 const loginUserValidationSchema = Joi.object({
@@ -35,17 +43,28 @@ const loginUserValidationSchema = Joi.object({
 });
 
 const editUserProfileValidationSchema = Joi.object({
-  name: Joi.string().pattern(regExp.nameRegExp).min(1).max(40).optional(),
+  name: Joi.string()
+    .pattern(regExp.nameRegExp)
+    .min(1)
+    .max(40)
+    .optional(),
   email: Joi.string()
     .email()
     .pattern(regExp.emailRegExp)
     .min(7)
     .max(63)
     .optional(),
-  photo: Joi.string().allow('').optional(),
-  birthday: Joi.date().allow('').optional(),
-  phone: Joi.string().allow('').optional(),
-  city: Joi.string().optional(),
+  photo: Joi.string()
+    .allow('')
+    .optional(),
+  birthday: Joi.date()
+    .allow('')
+    .optional(),
+  phone: Joi.string()
+    .allow('')
+    .optional(),
+  city: Joi.string()
+    .optional(),
 });
 
 const forgotUserPasswordValidationSchema = Joi.object({
