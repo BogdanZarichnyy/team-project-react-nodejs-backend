@@ -41,7 +41,7 @@ const petSchema = new Schema(
     },
     comments: {
       type: String,
-      match: regExp.stringRegExp,
+      match: regExp.lettersAndDigitsRegExp,
       minLength: 8,
       maxLength: 120,
       default: '',
