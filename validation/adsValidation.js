@@ -20,7 +20,8 @@ const addAdValidationSchema = Joi.object({
     .required(),
   sex: Joi.string()
     .required(),
-  passport: Joi.string().allow('')
+  passport: Joi.string()
+    .allow('')
     .optional(),
   price: Joi.string()
     .pattern(regExp.priceRegExp)

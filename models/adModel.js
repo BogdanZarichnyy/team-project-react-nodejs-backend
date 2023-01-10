@@ -76,7 +76,7 @@ const adSchema = new Schema(
       ref: 'user',
       required: true,
     },
-    follovers: [
+    followers: [
       {
         type: Schema.Types.ObjectId,
         unique: true,
