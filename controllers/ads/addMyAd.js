@@ -11,11 +11,6 @@ const addMyAd = async (req, res) => {
     const { _id } = req.user;
     const { photo, passport } = req.files;
 
-    // if (req.files !== undefined) {
-    //     const { photo, passport } = req.files;
-    //     console.log(req.files);
-    // }
-
     const validationResult = addAdValidationSchema.validate(req.body);
 
     if (validationResult.error) {

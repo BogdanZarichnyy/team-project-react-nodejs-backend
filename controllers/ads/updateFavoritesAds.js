@@ -20,10 +20,16 @@ const addFavoritesAds = async (req, res) => {
 
     if (indexUser === -1) { 
         await Ad.findByIdAndUpdate(adId, { $push: { follovers: _id } });
-        res.status(200).json({ message: `Ad ${adId} added in favorites ads` });
+        res.status(200).json({
+            message: `Ad ${adId} added in favorites ads`,
+            ad
+        });
     } else {
         await Ad.findByIdAndUpdate(adId, { $pull: { follovers: _id } });
-        res.status(200).json({ message: `Ad ${adId} deleted in favorites ads` });
+        res.status(200).json({
+            message: `Ad ${adId} deleted in favorites ads`,
+            ad
+        });
     }
 }
 

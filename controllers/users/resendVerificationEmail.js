@@ -3,13 +3,11 @@ const User = require('../../models/userModel');
 const sendSgEmail = require('../../helpers/sendSgEmail');
 
 const { BASE_URL } = process.env;
-console.log(BASE_URL);
 
 async function resendVerificationEmail(req, res) {
   const { email } = req.body;
 
   const user = await User.findOne({ email });
-  console.log(email);
 
   if (!email) {
     throw createError({ status: 400, message: 'Missing required field email' });
