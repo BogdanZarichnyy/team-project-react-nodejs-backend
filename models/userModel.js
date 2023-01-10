@@ -21,8 +21,8 @@ const userSchema = new Schema(
     password: {
       type: String,
       match: regExp.passwordRegExp,
-      minLength: 7,
-      maxLength: 32,
+      // minLength: 7,
+      // maxLength: 32,
       required: [true, 'Set password for user'],
     },
     avatar: {
