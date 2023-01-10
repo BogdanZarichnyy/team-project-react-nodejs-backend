@@ -38,8 +38,8 @@ const adSchema = new Schema(
     },
     addTitle: {
       type: String,
-      minLength: 8,
-      maxLength: 120,
+      minLength: 2,
+      maxLength: 48,
       match: regExp.lettersAndDigitsRegExp,
       required: [true, 'Set title of ad'],
     },
