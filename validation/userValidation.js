@@ -15,7 +15,7 @@ const registerUserValidationSchema = Joi.object({
     .max(32)
     .required(),
   photo: Joi.string().allow(''),
-  birthday: Joi.date().allow(''),
+  birthday: Joi.string().allow(''),
   phone: Joi.string().required(),
   city: Joi.string().required(),
 });

@@ -1,10 +1,10 @@
 const Ad = require('../../models/adModel');
 
 const getAllAds = async (req, res) => {
-    const { category = 'inGoodHands', page = 1, limit = 8 } = req.query;
+    const { category = 'inGoodHands', page = 1, limit = 8, query = '' } = req.query;
     const skip = (parseInt(page) - 1) * parseInt(limit);
 
-    const data = await Ad.find({ category })
+    const data = await Ad.find({ addTitle: { $regex: query }, category })
         .populate('owner', 'email phone')
         .skip(skip)
         .limit(limit);
