@@ -9,7 +9,6 @@ const adSchema = new Schema(
         family: {
             type: String,
             default: '',
-            // required: [true, 'Set family for pet'],
         },
         category: {
             type: String,
@@ -60,26 +59,11 @@ const adSchema = new Schema(
             ref: 'user',
             required: true
         },
-        // owner: {
-        //     _id: {
-        //         type: Schema.Types.ObjectId,
-        //         ref: 'user',
-        //         required: true
-        //     },
-        //     email: {
-        //         type: Schema.Types.String,
-        //         required: true
-        //     },
-        //     phone: {
-        //         type: Schema.Types.String,
-        //         required: true
-        //     },
-        // },
         follovers: [{
             type: Schema.Types.ObjectId,
             unique: true,
             ref: "user"
-        }], // змінити модель тварин для категорій на необов'язкові поля + аргегації для масиву улюбленців для видалення оголошень у всіх користувачів
+        }],
     },
     { versionKey: false, timestamps: true }
 );
