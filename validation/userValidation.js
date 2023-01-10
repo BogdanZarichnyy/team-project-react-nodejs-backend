@@ -21,12 +21,16 @@ const registerUserValidationSchema = Joi.object({
 });
 
 const loginUserValidationSchema = Joi.object({
-  password: Joi.string().min(7).max(32).required(),
   email: Joi.string()
     .email()
     .pattern(regExp.emailRegExp)
     .min(7)
     .max(63)
+    .required(),
+  password: Joi.string()
+    .pattern(regExp.passwordRegExp)
+    .min(7)
+    .max(32)
     .required(),
 });
 

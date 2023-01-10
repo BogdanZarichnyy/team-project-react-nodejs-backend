@@ -6,6 +6,8 @@ const petSchema = new Schema(
     name: {
       type: String,
       match: regExp.nameRegExp,
+      minLength: 2,
+      maxLength: 16,
       required: [true, 'Set name for pet'],
     },
     family: {
@@ -20,6 +22,8 @@ const petSchema = new Schema(
     breed: {
       type: String,
       match: regExp.stringRegExp,
+      minLength: 2,
+      maxLength: 24,
       required: [true, 'Set breed for pet'],
     },
     sex: {
@@ -38,6 +42,8 @@ const petSchema = new Schema(
     comments: {
       type: String,
       match: regExp.stringRegExp,
+      minLength: 8,
+      maxLength: 120,
       default: '',
     },
     owner: {

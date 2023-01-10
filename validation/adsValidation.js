@@ -1,39 +1,40 @@
 const Joi = require('joi');
-const stringPattern = require('../helpers/regExp/stringRegExp');
+const regExp = require('../helpers/regExp');
 
 const addAdValidationSchema = Joi.object({
-  name: Joi.string().pattern(stringPattern).min(1).max(50).required(),
+  name: Joi.string().pattern(regExp.nameRegExp).min(1).max(50).required(),
   birthDate: Joi.string().required(),
-  family: Joi.string().pattern(stringPattern).allow('').optional(),
-  breed: Joi.string().pattern(stringPattern).required(),
+  family: Joi.string().pattern(regExp.stringRegExp).allow('').optional(),
+  breed: Joi.string().pattern(regExp.stringRegExp).required(),
   sex: Joi.string().required(),
   passport: Joi.string().allow('').optional(),
-  price: Joi.string()
-    .pattern(/^([1-9]+[0-9]*)*\$$/)
-    .min(1)
-    .optional(),
+  price: Joi.string().pattern(regExp.priceRegExp).min(1).optional(),
   category: Joi.string().required(),
-  addTitle: Joi.string().pattern(stringPattern).required(),
+  addTitle: Joi.string().pattern(regExp.lettersAndDigitsRegExp).required(),
   photo: Joi.string().allow('').optional(),
-  location: Joi.string().pattern(stringPattern).required(),
-  comments: Joi.string().pattern(stringPattern).allow('').optional(),
+  location: Joi.string().pattern(regExp.stringRegExp).required(),
+  comments: Joi.string()
+    .pattern(regExp.lettersAndDigitsRegExp)
+    .allow('')
+    .optional(),
 });
 
 const updateAdValidationSchema = Joi.object({
-  name: Joi.string().pattern(stringPattern).min(3).max(40).optional(),
-  family: Joi.string().optional(),
-  price: Joi.string()
-    .pattern(/^([1-9]+[0-9]*)*\$$/)
-    .min(1)
-    .optional(),
-  category: Joi.string().optional(),
-  breed: Joi.string().pattern(stringPattern).optional(),
+  name: Joi.string().pattern(regExp.nameRegExp).min(3).max(40).optional(),
   birthDate: Joi.string().optional(),
-  addTitle: Joi.string().pattern(stringPattern).optional(),
-  photo: Joi.string().allow('').optional(),
+  family: Joi.string().pattern(regExp.stringRegExp).optional(),
+  breed: Joi.string().pattern(regExp.stringRegExp).optional(),
   sex: Joi.string().optional(),
-  comments: Joi.string().pattern(stringPattern).allow('').optional(),
-  location: Joi.string().pattern(stringPattern).optional(),
+  passport: Joi.string().allow('').optional(),
+  price: Joi.string().pattern(regExp.priceRegExp).min(1).optional(),
+  category: Joi.string().optional(),
+  addTitle: Joi.string().pattern(regExp.lettersAndDigitsRegExp).optional(),
+  photo: Joi.string().allow('').optional(),
+  location: Joi.string().pattern(regExp.stringRegExp).optional(),
+  comments: Joi.string()
+    .pattern(regExp.lettersAndDigitsRegExp)
+    .allow('')
+    .optional(),
 });
 
 module.exports = {
