@@ -66,7 +66,8 @@ const addMyAd = async (req, res) => {
         await fs.unlink(petPassportPath);
     }
 
-    const data = await Ad.findByIdAndUpdate(newAd._id, { photo: params.photo, passport: params.passport }, { new: true });
+    const data = await Ad.findByIdAndUpdate(newAd._id, { photo: params.photo, passport: params.passport }, { new: true })
+        .populate('owner', 'email phone');
 
     res.status(201).json({ message: 'Created new ad', ad: data });
 }

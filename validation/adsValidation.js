@@ -21,7 +21,8 @@ const addAdValidationSchema = Joi.object({
         .allow('')
         .optional(),
     price: Joi.string()
-        .pattern(/^([1-9]+[0-9]*)\$$/)
+        .pattern(/^([1-9]+[0-9]*)*\$$/)
+        // .allow('')
         .min(1)
         .optional(),
     category: Joi.string()
@@ -50,7 +51,8 @@ const updateAdValidationSchema = Joi.object({
     family: Joi.string()
         .optional(),
     price: Joi.string()
-        .pattern(/^([1-9]+[0-9]*)\$$/)
+        .pattern(/^([1-9]+[0-9]*)*\$$/)
+        // .allow('')
         .min(1)
         .optional(),
     category: Joi.string()

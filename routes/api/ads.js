@@ -15,7 +15,7 @@ router.post('/', userAuthenticate, upload.fields([ { name: 'photo', maxCount: 1 
 
 router.patch('/:adId', userAuthenticate, upload.fields([{ name: 'photo', maxCount: 1 }, { name: 'passport', maxCount: 1 }]), controllerWrraper(updateMyAdByID));
 
-router.post('/favorites', userAuthenticate, controllerWrraper(getFavoritesAds));
+router.get('/favorites', userAuthenticate, controllerWrraper(getFavoritesAds));
 
 router.post('/favorites/:adId', userAuthenticate, controllerWrraper(updateFavoritesAds));
 
