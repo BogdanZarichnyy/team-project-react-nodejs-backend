@@ -6,6 +6,7 @@ const getMyAds = async (req, res) => {
     const skip = (parseInt(page) - 1) * parseInt(limit);
 
     const data = await Ad.find({ owner: _id })
+        .populate('owner', 'email phone')
         .skip(skip)
         .limit(limit);
 

@@ -4,14 +4,8 @@ const getAllAds = async (req, res) => {
     const { category = 'inGoodHands', page = 1, limit = 8 } = req.query;
     const skip = (parseInt(page) - 1) * parseInt(limit);
 
-    // const params = {};
-
-    // if (category !== undefined) {
-    //     params.category = category;
-    // }
-    
-    // const data = await Ad.find(params)
     const data = await Ad.find({ category })
+        .populate('owner', 'email phone')
         .skip(skip)
         .limit(limit);
 

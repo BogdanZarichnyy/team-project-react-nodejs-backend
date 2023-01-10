@@ -9,8 +9,6 @@ const {
   registrationUser,
   loginUser,
   getCurrentUser,
-  addFavoritesAdsUser,
-  deleteFavoritesAdsUser,
   editUserProfile,
   updateUserAvatar,
   forgotUserPassword,
@@ -30,10 +28,6 @@ router.post('/registration', controllerWrraper(registrationUser));
 router.post('/login', controllerWrraper(loginUser));
 
 router.get('/current', userAuthenticate, controllerWrraper(getCurrentUser));
-
-router.post('/favorites_ads', userAuthenticate, controllerWrraper(addFavoritesAdsUser));
-
-router.delete('/favorites_ads', userAuthenticate, controllerWrraper(deleteFavoritesAdsUser));
 
 router.patch('/profile', userAuthenticate, controllerWrraper(editUserProfile));
 

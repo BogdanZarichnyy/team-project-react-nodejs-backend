@@ -8,7 +8,7 @@ const { addAdValidationSchema } = require('../../validation/adsValidation');
 const FILES_TEMP_DIR = path.join(__dirname, '..', '..', 'temp', 'files');
     
 const addMyAd = async (req, res) => {
-    const { _id, email, phone } = req.user;
+    const { _id } = req.user;
     const { photo, passport } = req.files;
 
     // if (req.files !== undefined) {
@@ -26,7 +26,7 @@ const addMyAd = async (req, res) => {
         ...req.body,
     };
 
-    const newAd = await Ad.create({ ...params, owner: { _id, email, phone } });
+    const newAd = await Ad.create({ ...params, owner: _id, });
 
     if (!newAd) {
         throw createError({ status: 500, message: 'Ad creation error' });
@@ -66,7 +66,7 @@ const addMyAd = async (req, res) => {
         await fs.unlink(petPassportPath);
     }
 
-    const data = await Ad.findByIdAndUpdate(newAd._id, { photo: params.photo, passport: params.passport }, { new: true })
+    const data = await Ad.findByIdAndUpdate(newAd._id, { photo: params.photo, passport: params.passport }, { new: true });
 
     res.status(201).json({ message: 'Created new ad', ad: data });
 }
