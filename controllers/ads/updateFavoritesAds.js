@@ -16,16 +16,16 @@ const addFavoritesAds = async (req, res) => {
         throw createError({status: 404, message: 'Ad not Found' });
     }
     
-    const indexUser = await ad.follovers.indexOf(_id);
+    const indexUser = await ad.followers.indexOf(_id);
 
     if (indexUser === -1) { 
-        await Ad.findByIdAndUpdate(adId, { $push: { follovers: _id } });
+        await Ad.findByIdAndUpdate(adId, { $push: { followers: _id } });
         res.status(200).json({
             message: `Ad ${adId} added in favorites ads`,
             ad
         });
     } else {
-        await Ad.findByIdAndUpdate(adId, { $pull: { follovers: _id } });
+        await Ad.findByIdAndUpdate(adId, { $pull: { followers: _id } });
         res.status(200).json({
             message: `Ad ${adId} deleted in favorites ads`,
             ad
