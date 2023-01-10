@@ -38,6 +38,8 @@ const adSchema = new Schema(
     },
     addTitle: {
       type: String,
+      minLength: 8,
+      maxLength: 120,
       match: regExp.lettersAndDigitsRegExp,
       required: [true, 'Set title of ad'],
     },
@@ -66,6 +68,7 @@ const adSchema = new Schema(
     price: {
       type: String,
       match: regExp.priceRegExp,
+      minLength: 1,
       default: '',
     },
     owner: {

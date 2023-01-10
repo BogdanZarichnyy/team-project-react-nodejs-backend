@@ -10,7 +10,7 @@ const addMyPetValidationSchema = Joi.object({
   photo: Joi.string().allow('').optional(),
   passport: Joi.string().allow('').optional(),
   comments: Joi.string()
-    .pattern(regExp.stringRegExp)
+    .pattern(regExp.lettersAndDigitsRegExp)
     .min(8)
     .max(120)
     .allow('')
@@ -26,7 +26,7 @@ const updateMyPetValidationSchema = Joi.object({
   photo: Joi.string().allow('').optional(),
   passport: Joi.string().allow('').optional(),
   comments: Joi.string()
-    .pattern(regExp.stringRegExp)
+    .pattern(regExp.lettersAndDigitsRegExp)
     .min(8)
     .max(120)
     .allow('')
