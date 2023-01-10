@@ -35,6 +35,6 @@ const citiesOfUkraineSchema = new Schema({
   timestamps: true
 });
 
-const CitiesOfUkraine = model('cities_of_ukraine', citiesOfUkraineSchema);
+const CitiesOfUkraine = model('cities', citiesOfUkraineSchema);
 
 module.exports = CitiesOfUkraine;

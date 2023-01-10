@@ -11,7 +11,8 @@ const deleteMyAdByID = async (req, res) => {
         throw createError({ status: 422, message: 'ID is not valid for MongoDB documents, please enter correct adId' });
     }
 
-    const data = await Ad.findOneAndRemove({ _id: adId, owner: _id });
+    const data = await Ad.findOneAndRemove({ _id: adId, owner: _id })
+        .populate('owner', 'email phone');
 
     if (!data) {
         throw createError({status: 404, message: 'Ad not Found' });
