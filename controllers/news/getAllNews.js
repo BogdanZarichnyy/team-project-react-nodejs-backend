@@ -5,7 +5,7 @@ const getAllNews = async (req, res) => {
     const { page = 1, limit = 8, query = '' } = req.query;
     const skip = (parseInt(page) - 1) * parseInt(limit);
 
-    const data = await News.find({ title: { $regex: query } })
+    const data = await News.find({ title: { $regex: new RegExp(query, 'i') } })
         .skip(skip)
         .limit(limit);
 
