@@ -69,7 +69,7 @@ const adSchema = new Schema(
       type: String,
       match: regExp.priceRegExp,
       minLength: 1,
-      default: '',
+      // default: '$',
     },
     owner: {
       type: Schema.Types.ObjectId,
