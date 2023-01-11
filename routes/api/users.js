@@ -16,6 +16,7 @@ const {
   resendVerificationEmail,
   verify,
   refreshToken,
+  changePassword,
 } = require('../../controllers/users');
 const {
   authRefTokenMiddleware,
@@ -35,11 +36,26 @@ router.post('/forgot_password', controllerWrraper(forgotUserPassword));
 
 router.post('/verify', controllerWrraper(resendVerificationEmail));
 
-router.get('/refreshtoken', authRefTokenMiddleware, controllerWrraper(refreshToken));
+router.get(
+  '/refreshtoken',
+  authRefTokenMiddleware,
+  controllerWrraper(refreshToken)
+);
 
 router.get('/verify/:verificationToken', controllerWrraper(verify));
 
-router.post('/avatar', userAuthenticate, upload.single('avatar'), controllerWrraper(updateUserAvatar));
+router.post(
+  '/avatar',
+  userAuthenticate,
+  upload.single('avatar'),
+  controllerWrraper(updateUserAvatar)
+);
+
+router.patch(
+  '/change_password',
+  userAuthenticate,
+  controllerWrraper(changePassword)
+);
 
 router.get('/logout', userAuthenticate, controllerWrraper(logoutUser));
 
