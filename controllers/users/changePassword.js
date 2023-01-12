@@ -34,7 +34,7 @@ const changePassword = async (req, res) => {
     { new: true }
   ).select({ password: 0, createdAt: 0, updatedAt: 0, refreshToken: 0 });
 
-  res.json(data);
+  res.status(200).json(data);
 };
 
 module.exports = changePassword;

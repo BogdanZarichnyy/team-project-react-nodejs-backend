@@ -11,7 +11,7 @@ const addAdValidationSchema = Joi.object({
     .pattern(regExp.stringRegExp)
     .allow('')
     .optional(),
-  birthDate: Joi.string()
+  birthDate: Joi.date()
     .required(),
   breed: Joi.string()
     .pattern(regExp.stringRegExp)
@@ -57,7 +57,7 @@ const updateAdValidationSchema = Joi.object({
   family: Joi.string()
     .pattern(regExp.stringRegExp)
     .optional(),
-  birthDate: Joi.string()
+  birthDate: Joi.date()
     .optional(),
   breed: Joi.string()
     .pattern(regExp.stringRegExp)
