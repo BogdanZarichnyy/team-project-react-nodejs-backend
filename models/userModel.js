@@ -33,6 +33,9 @@ const userSchema = new Schema(
     },
     phone: {
       type: String,
+      match: regExp.phoneNumberRegExp,
+      minLength: 13,
+      maxLength: 13,
       required: [true, 'Enter your phone number'],
     },
     city: {
