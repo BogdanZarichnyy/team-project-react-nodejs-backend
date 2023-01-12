@@ -1,7 +1,6 @@
 const { isValidObjectId } = require('mongoose');
 const Ad = require('../../models/adModel');
 const { createError } = require('../../helpers/createError');
-const { updateAdValidationSchema } = require('../../validation/adsValidation');
 const uploadFiles = require('../../helpers/uploadFiles');
     
 const updateMyAdByID = async (req, res) => {
@@ -10,12 +9,6 @@ const updateMyAdByID = async (req, res) => {
 
     if (!isValidObjectId(adId)) {
         throw createError({ status: 422, message: "Ad with such ID is not found" });
-    }
-
-    const validationResult = updateAdValidationSchema.validate(req.body);
-
-    if (validationResult.error) {
-        return res.status(400).json({ message: validationResult.error.message });
     }
 
     const params = {};

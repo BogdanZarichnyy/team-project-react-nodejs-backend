@@ -6,7 +6,7 @@ const { createError } = require('../../helpers/createError');
 const deleteMyAdByID = async (req, res) => {
     const { _id } = req.user;
     const { adId } = req.params;
-    console.log(adId);
+
     if (!isValidObjectId(adId)) {
         throw createError({ status: 422, message: 'ID is not valid for MongoDB documents, please enter correct adId' });
     }

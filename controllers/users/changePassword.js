@@ -1,17 +1,9 @@
 const bcrypt = require('bcryptjs');
 const { createError } = require('../../helpers/createError');
 const User = require('../../models/userModel');
-const {
-  changePasswordValidationSchema,
-} = require('../../validation/userValidation');
 
 const changePassword = async (req, res) => {
   const { password, newPassword } = req.body;
-
-  const validationResult = changePasswordValidationSchema.validate(req.body);
-  if (validationResult.error) {
-    return res.status(400).json({ message: validationResult.error.message });
-  }
 
   const id = req.user.id;
 
