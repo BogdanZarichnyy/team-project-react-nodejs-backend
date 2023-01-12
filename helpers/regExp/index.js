@@ -4,6 +4,7 @@ const nameRegExp = require('./nameRegExp');
 const stringRegExp = require('./stringRegExp');
 const passwordRegExp = require('./passwordRegExp');
 const priceRegExp = require('./priceRegExp');
+const phoneNumberRegExp = require('./phoneNumberRegExp');
 
 const regExp = {
   emailRegExp,
@@ -12,6 +13,7 @@ const regExp = {
   stringRegExp,
   passwordRegExp,
   priceRegExp,
+  phoneNumberRegExp,
 };
 
 module.exports = regExp;

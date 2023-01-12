@@ -1,33 +1,41 @@
 const { Schema, model } = require('mongoose');
+const regExp = require('../helpers/regExp');
 
-const oursFriendsSchema = new Schema({
+const oursFriendsSchema = new Schema(
+  {
     name: {
-        type: String,
+      type: String,
     },
     logo: {
-        type: String,
-        unique: true,
+      type: String,
+      unique: true,
     },
-    workTime: [{
+    workTime: [
+      {
         type: Object,
-    }],
+      },
+    ],
     address: {
-        type: String,
+      type: String,
     },
     url: {
-        type: String,
+      type: String,
     },
     email: {
-        type: String,
+      type: String,
     },
     phone: {
-        type: String,
+      type: String,
+      match: regExp.phoneNumberRegExp,
+      minLength: 13,
+      maxLength: 13,
     },
-},
-{
-  versionKey: false,
-  timestamps: true
-});
+  },
+  {
+    versionKey: false,
+    timestamps: true,
+  }
+);
 
 const OursFriends = model('ours_friends', oursFriendsSchema);
 

@@ -16,7 +16,11 @@ const registerUserValidationSchema = Joi.object({
     .required(),
   photo: Joi.string().allow('').optional(),
   birthday: Joi.date().allow('').optional(),
-  phone: Joi.string().required(),
+  phone: Joi.string()
+    .pattern(regExp.phoneNumberRegExp)
+    .min(13)
+    .max(13)
+    .required(),
   city: Joi.string().required(),
 });
 
@@ -44,7 +48,12 @@ const editUserProfileValidationSchema = Joi.object({
     .optional(),
   photo: Joi.string().allow('').optional(),
   birthday: Joi.date().allow('').optional(),
-  phone: Joi.string().allow('').optional(),
+  phone: Joi.string()
+    .pattern(regExp.phoneNumberRegExp)
+    .min(13)
+    .max(13)
+    .allow('')
+    .optional(),
   city: Joi.string().optional(),
 });
 
