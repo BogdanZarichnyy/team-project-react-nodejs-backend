@@ -1,12 +1,8 @@
 const { isValidObjectId } = require('mongoose');
-const cloudinary = require('cloudinary').v2;
-const fs = require('fs/promises');
-const path = require('path');
 const Ad = require('../../models/adModel');
 const { createError } = require('../../helpers/createError');
 const { updateAdValidationSchema } = require('../../validation/adsValidation');
-
-const FILES_TEMP_DIR = path.join(__dirname, '..', '..', 'temp', 'files');
+const uploadFiles = require('../../helpers/uploadFiles');
     
 const updateMyAdByID = async (req, res) => {
     const { adId } = req.params;
@@ -27,35 +23,21 @@ const updateMyAdByID = async (req, res) => {
     if (photo !== undefined) {
         const { filename } = photo[0];
 
-        const petPhotoPath = path.join(FILES_TEMP_DIR, filename);
+        const cloudinaryPathForPetsPhotos = '/goit_team_project_react_nodejs/pets_photos';
 
-        const petPhoto = await cloudinary.uploader.upload(petPhotoPath, {
-            public_id: adId,
-            folder: '/goit_team_project_react_nodejs/pets_photos',
-            overwrite: true,
-        })
-            .catch(error => console.error(error));
-                
-        params.photo = petPhoto.url;
-        
-        await fs.unlink(petPhotoPath);
+        const petPhotoURL = await uploadFiles(adId, filename, cloudinaryPathForPetsPhotos);
+
+        params.photo = petPhotoURL;
     }
 
     if (passport !== undefined) {
         const { filename } = passport[0];
-        
-        const petPassportPath = path.join(FILES_TEMP_DIR, filename);
-        
-        const petPassport = await cloudinary.uploader.upload(petPassportPath, {
-            public_id: adId,
-            folder: '/goit_team_project_react_nodejs/pets_passports',
-            overwrite: true,
-        })
-            .catch(error => console.error(error));
-        
-        params.passport = petPassport.url;
-        
-        await fs.unlink(petPassportPath);
+
+        const cloudinaryPathForPetsPassports = '/goit_team_project_react_nodejs/pets_passports';
+
+        const petPassportURL = await uploadFiles(adId, filename, cloudinaryPathForPetsPassports);
+
+        params.passport = petPassportURL;
     }
 
     const updateAd = await Ad.findByIdAndUpdate(adId, { ...req.body, ...params }, { new: true });
