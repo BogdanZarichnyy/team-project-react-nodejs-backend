@@ -1,17 +1,10 @@
 const Ad = require('../../models/adModel');
 const { createError } = require('../../helpers/createError');
-const { addAdValidationSchema } = require('../../validation/adsValidation');
 const uploadFiles = require('../../helpers/uploadFiles');
     
 const addMyAd = async (req, res) => {
     const { _id } = req.user;
     const { photo, passport } = req.files;
-
-    const validationResult = addAdValidationSchema.validate(req.body);
-
-    if (validationResult.error) {
-        return res.status(400).json({ message: validationResult.error.message });
-    }
 
     const params = {
         ...req.body,

@@ -16,7 +16,9 @@ const updateUserAvatar = async (req, res) => {
         folder: '/goit_team_project_react_nodejs/users_avatars',
         overwrite: true,
     })
-        .catch(error => console.error(error));
+        .catch(error => {
+            console.error(error);
+        });
 
     await fs.unlink(userAvatarPath);
 

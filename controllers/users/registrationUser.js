@@ -3,17 +3,11 @@ const jwt = require('jsonwebtoken');
 const { createError } = require('../../helpers/createError');
 const { randomUUID } = require('crypto');
 const User = require('../../models/userModel');
-const { registerUserValidationSchema } = require('../../validation/userValidation');
 
 const { JWT_ACCESS_SECRET_KEY, JWT_REFRESH_SECRET_KEY } = process.env;
 
 const registerUser = async (req, res) => {
   const { name, email, password, phone, city } = req.body;
-
-  const validationResult = registerUserValidationSchema.validate(req.body);
-  if (validationResult.error) {
-    return res.status(400).json({ message: validationResult.error.message });
-  }
 
   const normalizedEmail = email.toLowerCase();
 

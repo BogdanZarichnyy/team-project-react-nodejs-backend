@@ -1,7 +1,6 @@
 const { isValidObjectId } = require('mongoose');
 const Pet = require('../../models/petModel');
 const { createError } = require('../../helpers/createError');
-const { updateMyPetValidationSchema } = require('../../validation/petValidation');
 const uploadFiles = require('../../helpers/uploadFiles');
 
 const updateMyPetByID = async (req, res) => {
@@ -14,12 +13,6 @@ const updateMyPetByID = async (req, res) => {
 
     if (!req.body) {
         throw createError({ status: 400, message: `Missing fields` });
-    }
-
-    const validationResult = updateMyPetValidationSchema.validate(req.body);
-
-    if (validationResult.error) {
-        return res.status(400).json({ message: validationResult.error.message });
     }
 
     const params = {};

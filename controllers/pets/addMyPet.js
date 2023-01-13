@@ -1,17 +1,10 @@
 const Pet = require('../../models/petModel');
 const { createError } = require('../../helpers/createError');
-const { addMyPetValidationSchema } = require('../../validation/petValidation');
 const uploadFiles = require('../../helpers/uploadFiles');
     
 const addMyPet = async (req, res) => {
     const { _id } = req.user;
     const { photo, passport } = req.files;
-
-    const validationResult = addMyPetValidationSchema.validate(req.body);
-
-    if (validationResult.error) {
-        return res.status(400).json({ message: validationResult.error.message });
-    }
 
     const params = {
         ...req.body,
