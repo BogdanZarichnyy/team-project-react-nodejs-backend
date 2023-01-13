@@ -5,8 +5,6 @@ const editUserProfile = require('./editUserProfile');
 const updateUserAvatar = require('./updateUserAvatar');
 const forgotUserPassword = require('./forgotUserPassword');
 const logoutUser = require('./logoutUser');
-const resendVerificationEmail = require('./resendVerificationEmail');
-const verify = require('./verify');
 const refreshToken = require('./refreshToken');
 const changePassword = require('./changePassword');
 
@@ -18,8 +16,6 @@ module.exports = {
   updateUserAvatar,
   forgotUserPassword,
   logoutUser,
-  resendVerificationEmail,
-  verify,
   refreshToken,
   changePassword,
 };
