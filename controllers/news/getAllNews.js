@@ -6,6 +6,7 @@ const getAllNews = async (req, res) => {
     const skip = (parseInt(page) - 1) * parseInt(limit);
 
     const data = await News.find({ title: { $regex: new RegExp(query, 'i') } })
+        .sort({ dateISO: -1 })
         .skip(skip)
         .limit(limit);
 
