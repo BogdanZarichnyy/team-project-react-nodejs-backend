@@ -25,7 +25,7 @@ const forgotUserPassword = async (req, res) => {
     to: email,
     subject: 'Forgot password',
     text: `<Here is your temporary password:${password}`,
-    html: `<p>Here is your temporary password:<b>${password}</b></p>`,
+    html: `<p>Here is your temporary password: <b>${password}</b></p>`,
   };
 
   await sendSgEmail(message);
