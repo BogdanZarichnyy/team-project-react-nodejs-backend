@@ -7,7 +7,7 @@ const getFavoritesAds = async (req, res) => {
     const skip = (parseInt(page) - 1) * parseInt(limit);
 
     const data = await Ad.find({ followers: { $elemMatch: { $eq: _id } }, addTitle: { $regex: new RegExp(query, 'i') } })
-        .populate('owner', 'email phone')
+        .populate('owner', 'name email phone')
         .skip(skip)
         .limit(limit);
 

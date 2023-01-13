@@ -5,7 +5,7 @@ const getAllAds = async (req, res) => {
     const skip = (parseInt(page) - 1) * parseInt(limit);
 
     const data = await Ad.find({ addTitle: { $regex: new RegExp(query, 'i') }, category })
-        .populate('owner', 'email phone')
+        .populate('owner', 'name email phone')
         .skip(skip)
         .limit(limit);
 

@@ -33,7 +33,8 @@ const updateMyAdByID = async (req, res) => {
         params.passport = petPassportURL;
     }
 
-    const updateAd = await Ad.findByIdAndUpdate(adId, { ...req.body, ...params }, { new: true });
+    const updateAd = await Ad.findByIdAndUpdate(adId, { ...req.body, ...params }, { new: true })
+        .populate('owner', 'name email phone');
     
     if (!updateAd) {
         throw createError({ status: 500, message: 'Ad creation error' });

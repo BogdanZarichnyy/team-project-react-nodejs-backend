@@ -37,7 +37,7 @@ const addMyAd = async (req, res) => {
     }
 
     const data = await Ad.findByIdAndUpdate(newAd._id, { photo: params.photo, passport: params.passport }, { new: true })
-        .populate('owner', 'email phone');
+        .populate('owner', 'name email phone');
 
     res.status(201).json({ message: 'Created new ad', ad: data });
 }

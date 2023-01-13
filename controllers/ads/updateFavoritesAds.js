@@ -20,14 +20,14 @@ const addFavoritesAds = async (req, res) => {
 
     if (indexUser === -1) { 
         const data = await Ad.findByIdAndUpdate(adId, { $push: { followers: _id } }, { new: true })
-            .populate('owner', 'email phone');
+            .populate('owner', 'name email phone');
         res.status(200).json({
             message: `Ad ${adId} added in favorites ads`,
             data
         });
     } else {
         const data = await Ad.findByIdAndUpdate(adId, { $pull: { followers: _id } }, { new: true })
-            .populate('owner', 'email phone');
+            .populate('owner', 'name email phone');
         res.status(200).json({
             message: `Ad ${adId} deleted in favorites ads`,
             data
