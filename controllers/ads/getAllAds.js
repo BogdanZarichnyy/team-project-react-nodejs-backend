@@ -9,6 +9,7 @@ const getAllAds = async (req, res) => {
 
     const data = await Ad.find({ addTitle: { $regex: new RegExp(query, 'i') }, category })
         .populate('owner', 'name email phone')
+        .sort({ createdAt: -1 })
         // .skip(skip)
         // .limit(limit);
     

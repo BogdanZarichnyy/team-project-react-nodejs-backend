@@ -11,6 +11,7 @@ const getFavoritesAds = async (req, res) => {
 
     const data = await Ad.find({ followers: { $elemMatch: { $eq: _id } }, addTitle: { $regex: new RegExp(query, 'i') } })
         .populate('owner', 'name email phone')
+        .sort({ createdAt: -1 })
         // .skip(skip)
         // .limit(limit);
 

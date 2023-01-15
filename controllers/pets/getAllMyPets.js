@@ -8,6 +8,7 @@ const getAllMyPets = async (req, res) => {
     // const count = await Pet.find({ owner: _id });
 
     const data = await Pet.find({ owner: _id })
+        .sort({ createdAt: -1 })
         // .skip(skip)
         // .limit(limit);
 
