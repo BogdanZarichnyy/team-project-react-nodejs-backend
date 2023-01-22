@@ -3,17 +3,12 @@ const { createError } = require('../../helpers/createError');
 const User = require('../../models/userModel');
 const { randomUUID } = require('crypto');
 const sendSgEmail = require('../../helpers/sendSgEmail');
-const { forgotUserPasswordValidationSchema } = require('../../validation/userValidation');
 
 const forgotUserPassword = async (req, res) => {
   const { email } = req.body;
+  
   const random = randomUUID();
   const password = random.slice(0, 8);
-
-  const validationResult = forgotUserPasswordValidationSchema.validate(req.body);
-  if (validationResult.error) {
-    return res.status(400).json({ message: validationResult.error.message });
-  }
 
   const user = await User.findOne({ email });
 
@@ -30,7 +25,7 @@ const forgotUserPassword = async (req, res) => {
     to: email,
     subject: 'Forgot password',
     text: `<Here is your temporary password:${password}`,
-    html: `<p>Here is your temporary password:<b>${password}</b></p>`,
+    html: `<p>Here is your temporary password: <b>${password}</b></p>`,
   };
 
   await sendSgEmail(message);

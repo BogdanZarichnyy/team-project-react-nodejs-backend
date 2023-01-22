@@ -8,6 +8,7 @@ const usersRouter = require('./routes/api/users');
 const petsRouter = require('./routes/api/pets');
 const newsRouter = require('./routes/api/news');
 const oursFriendsRouter = require('./routes/api/oursFriends');
+const citiesOfUkraineRouter = require('./routes/api/citiesOfUkraine');
 
 const app = express();
 
@@ -25,11 +26,12 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));
 
-app.use('/api/ads', adsRouter);
+app.use('/api/notices', adsRouter);
 app.use('/api/users', usersRouter);
 app.use('/api/pets', petsRouter);
 app.use('/api/news', newsRouter);
 app.use('/api/ours_friends', oursFriendsRouter);
+app.use('/api/cities_of_ukraine', citiesOfUkraineRouter);
 
 app.use((req, res) => {
   res.status(404).json({ message: 'Not found' });

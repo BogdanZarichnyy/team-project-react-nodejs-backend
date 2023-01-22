@@ -1,22 +1,26 @@
 const { Schema, model } = require('mongoose');
-
-const emailRegexp =
-  /^([a-z0-9._]{1}[a-z0-9._-]+)+@[a-z0-9._-]+\.([a-z0-9._-]*[a-z0-9._]+)$/;
+const regExp = require('../helpers/regExp');
 
 const userSchema = new Schema(
   {
     name: {
       type: String,
+      match: regExp.nameRegExp,
+      minLength: 1,
+      maxLength: 40,
       required: [true, 'Enter your name'],
     },
     email: {
       type: String,
-      match: emailRegexp,
+      match: regExp.emailRegExp,
+      minLength: 7,
+      maxLength: 63,
       required: [true, 'Email is required'],
       unique: true,
     },
     password: {
       type: String,
+      match: regExp.passwordRegExp,
       required: [true, 'Set password for user'],
     },
     avatar: {
@@ -29,19 +33,15 @@ const userSchema = new Schema(
     },
     phone: {
       type: String,
+      match: regExp.phoneNumberRegExp,
+      minLength: 13,
+      maxLength: 13,
       required: [true, 'Enter your phone number'],
     },
     city: {
       type: String,
       required: [true, 'Enter the city in which you live'],
     },
-    // favoritesAds: [Schema.Types.ObjectId],
-    favoritesAds: [Schema.Types.String],
-    // favoritesAds: [{
-    //     type: Schema.Types.ObjectId,
-    //     unique: true,
-    //     ref: "pet"
-    // }],
     accessToken: {
       type: String,
       default: '',

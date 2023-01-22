@@ -2,17 +2,11 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { createError } = require('../../helpers/createError');
 const User = require('../../models/userModel');
-const { loginUserValidationSchema } = require('../../validation/userValidation');
 
 const { JWT_ACCESS_SECRET_KEY, JWT_REFRESH_SECRET_KEY } = process.env;
 
 const loginUser = async (req, res) => {
   const { email, password } = req.body;
-
-  const validationResult = loginUserValidationSchema.validate(req.body);
-  if (validationResult.error) {
-    return res.status(400).json({ message: validationResult.error.message });
-  }
 
   const user = await User.findOne({ email });
 
@@ -38,11 +32,11 @@ const loginUser = async (req, res) => {
   };
 
   const accessToken = jwt.sign(userId, JWT_ACCESS_SECRET_KEY, {
-    expiresIn: '15m',
+    expiresIn: '1d',
   });
 
   const refreshToken = jwt.sign(userId, JWT_REFRESH_SECRET_KEY, {
-    expiresIn: '30d',
+    expiresIn: '1d',
   });
 
   const data = await User.findByIdAndUpdate(
